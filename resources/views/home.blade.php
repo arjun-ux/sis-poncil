@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="{{ asset('css/mystyle.css') }}">
     <style>
         nav {
             background-color: #567051;
@@ -32,7 +32,8 @@
         }
 
         nav .hover:hover {
-            background-color: #2a4621;
+            background-color: #7cb36a;
+            color: black;
         }
 
         /* Dropdown styles */
@@ -56,10 +57,11 @@
     </style>
 </head>
 <body>
+    {{-- navbar --}}
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="#"><img height="38"
-                    src="{{ asset('log.png') }}" width="38"></a>
+                    src="{{ asset('img/log.png') }}" width="38"></a>
             <button class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -183,6 +185,12 @@
             </div>
         </div>
     </nav>
+
+    {{-- content head --}}
+    <div class="container-fluid p-0">
+        <img class="imgHome" src="{{ asset('img/home.jpg') }}" alt="">
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </body>
