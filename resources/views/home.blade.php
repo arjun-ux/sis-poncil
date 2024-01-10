@@ -8,189 +8,83 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/mystyle.css') }}">
     <style>
-        nav {
-            background-color: #567051;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
+        body {
+            height: 100%;
             margin: 0;
-            display: flex;
+            padding: 0;
         }
-
-        nav li {
+        .hero-image {
+            background-image: url('img/home.jpg');
+            height: 88vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             position: relative;
         }
-
-        nav a {
-            display: block;
-            padding: 15px 20px;
-            color: #fff;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        nav .hover:hover {
-            background-color: #7cb36a;
-            color: black;
-        }
-
-        /* Dropdown styles */
-        .dropdown {
-            display: none;
+        .hero-image::after {
+            content: '';
             position: absolute;
-            top: 100%;
             left: 0;
-            background-color: #2A4B1E;
-            box-shadow: 0 2px 5px rgba(108, 145, 99, 0.2);
-            z-index: 1;
+            bottom: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+            pointer-events: none;
         }
 
-        .dropdown a {
-            white-space: nowrap;
-        }
 
-        nav li:hover .dropdown {
-            display: block;
-        }
+
+
+
     </style>
 </head>
 <body>
-    {{-- navbar --}}
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="#"><img height="38"
-                    src="{{ asset('img/log.png') }}" width="38"></a>
-            <button class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-around" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="hover" href="#">PONPES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="hover" href="#">TENTANG KAMI</a>
-                        <div class="dropdown">
-                            {{-- @foreach (App\Models\Fakultas::get() as $item)
-                                <a class="hover" href="#">{{ $item->nama_fakultas }}</a>
-                            @endforeach --}}
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="hover" href="#">ASRAMA</a>
-                        <div class="dropdown">
-                            {{-- @foreach (App\Models\ProgramStudy::get() as $item)
-                                <a class="hover" href="#">{{ $item->nama_program }}</a>
-                            @endforeach --}}
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="hover" href="#">PSB</a>
-                        <div class="dropdown">
-                            <a class="hover" href="">SANTRI BARU</a>
-                            <a class="hover" href="#jalur-pendaftaran">BIAYA PENDAFTARAN</a>
-                            <a class="hover" href="#alur-pendaftaran">ALUR PENDAFTARAN</a>
-                                {{-- @if ($setting->count() === 0)
-                                <a class="hover" href="/biaya-pendaftaran">
-                                    Biaya pendafataran
-                                </a>
-                                @elseif ($pdf->biaya_pendaftaran === 0)
-                                    <a class="hover" href="/biaya-pendaftaran">
-                                        Biaya pendafataran
-                                    </a>
-                                @else
-                                    <a aria-current="page" class="hover" href="/biaya-pendaftaran" target="_blank">
-                                        Biaya pendafataran
-                                    </a>
-                                @endif --}}
-                            <a class="hover" href="#faq">FAQ</a>
-                        </div>
-                    </li>
-
-
-                </ul>
-
-                <ul class="navbar-nav ">
-
-                    @guest
-                        <li>
-                            <a class="hover" href="/login-maba">Login</a>
-                        </li>
-                        <li>
-                            <a class="hover" href="/register-maba">Register</a>
-                        </li>
-                    @else
-                        <li>
-                            <a href="#"><img alt="profil" class="rounded-circle img-fluid p-0"
-                                    src="{{ asset('iaida/profile.jpg') }}" width="30"></a>
-                            <div class="dropdown">
-                                {{-- @if (Auth::user()->role === 'maba')
-                                    <a class="hover" href="/dashboard-maba">My Profile</a>
-                                    <a class="hover" data-bs-target="#modalMaba" data-bs-toggle="modal" href="#">Log
-                                        Out</a>
-                                @elseif (Auth::user()->role === 'super_admin')
-                                    <a class="hover" href="/dashboard-panitia">Dashboard</a>
-                                    <a class="hover" href="#" data-bs-toggle="modal" data-bs-target="#modalAdmin">Log Out</a>
-
-                                @endif --}}
-                            </div>
-                        </li>
-                        <!-- logout Modal maba -->
-                        <div class="modal fade" id="modalMaba" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
-                                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
-                                            type="button"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Anda Yakin Mau Keluar?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-primary" data-bs-dismiss="modal" type="button">Cencel</button>
-                                        <a class="btn btn-danger" href="#">Logout</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Logout Modal admin-->
-                        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalAdmin"
-                            tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
-                                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
-                                            type="button"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Anda Yakin Mau Keluar?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-primary" data-bs-dismiss="modal"
-                                            type="button">Cencel</button>
-                                        <a class="btn btn-danger" href="#">Logout</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    @endguest
-                </ul>
-
+    @include('layouts.navbar')
+    <div class="hero-image">
+        <div class="container py-5">
+            <div class="row justify-content-center py-5">
+                <div class="col-md-8 py-5 text-center">
+                    <h1>Selamat Datang</h1>
+                    <h2>Ponpes Darussalam Kanak-Kanak</h2>
+                    <p>Blokagung, Karangdoro, Tegalsari, Banyuwangi</p>
+                </div>
             </div>
         </div>
-    </nav>
-
-    {{-- content head --}}
-    <div class="container-fluid p-0">
-        <img class="imgHome" src="{{ asset('img/home.jpg') }}" alt="">
+    </div>
+    <div class="container">
+        <h2 id="kegiatan-pesantren" class="text-center">Kegiatan Pesantren</h2>
+        <div class="row">
+            <div class="col-md-6 py-5 ">
+                <div class="fade-left-animation text-center">
+                    <img src="{{ asset('img/1.jpg') }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-6 py-5">
+                <h3>Pengajian Kitab</h3>
+                <p>Pengajian kitab kuning merupakan suatu wadah pembelajaran
+                    agama Islam yang berfokus pada studi kitab-kitab klasik Islam
+                    yang telah diwariskan dari generasi ke generasi. Kegiatan ini
+                    biasanya dilakukan di lingkungan pondok pesantren, masjid, atau
+                    lembaga pendidikan Islam lainnya. Peserta pengajian biasanya terdiri
+                     dari para santri, masyarakat umum, dan para pencari ilmu agama.</p>
+            </div>
+        </div>
     </div>
 
+    {{-- footer --}}
+    <footer class="pesantren-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="logo-pesantren.png" alt="Logo Pesantren">
+            </div>
+            <div class="footer-info">
+                <h3>Yayasan Pesantren Al-Hidayah</h3>
+                <p>Jalan Pesantren No. 123, Desa Pesantren, Kecamatan Pesantren</p>
+                <p>Telepon: (123) 456-7890</p>
+                <p>Email: info@yayasanpesantren.com</p>
+            </div>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </body>
