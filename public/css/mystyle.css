@@ -74,7 +74,7 @@ nav li:hover .dropdown {
     }
 }
 .pesantren-footer {
-    background-color: #333;
+    background-color: #567051;
     color: #fff;
     padding: 20px 0;
 }
@@ -101,4 +101,52 @@ nav li:hover .dropdown {
 
 .footer-info p {
     margin: 5px 0;
+}
+.fade-text {
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 3px;
+    text-shadow: 1px 1px 2px #000;
+    animation: fadeInUpBig;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    opacity: 0;
+    animation: fadeInUp 2s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Delay each fade text */
+.fade-text:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.fade-text:nth-child(3) {
+    animation-delay: 1.5s;
+}
+
+.scroll-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background-color: #768374;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.scroll-to-top-btn:hover {
+    background-color: #859981;
 }

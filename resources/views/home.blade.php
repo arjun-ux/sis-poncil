@@ -32,10 +32,6 @@
             pointer-events: none;
         }
 
-
-
-
-
     </style>
 </head>
 <body>
@@ -44,9 +40,12 @@
         <div class="container py-5">
             <div class="row justify-content-center py-5">
                 <div class="col-md-8 py-5 text-center">
-                    <h1>Selamat Datang</h1>
-                    <h2>Ponpes Darussalam Kanak-Kanak</h2>
-                    <p>Blokagung, Karangdoro, Tegalsari, Banyuwangi</p>
+                    <div >
+                        <h1 class="fade-text fw-bold">Selamat Datang</h1>
+                        <h2 class="fade-text fw-bold">Ponpes Darussalam Kanak-Kanak</h2>
+                        <p class="fade-text">Blokagung, Karangdoro, Tegalsari, Banyuwangi</p>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -70,22 +69,23 @@
             </div>
         </div>
     </div>
-
+    <button id="scrollToTopBtn" class="scroll-to-top-btn">&#8593;</button>
     {{-- footer --}}
     <footer class="pesantren-footer">
         <div class="footer-container">
             <div class="footer-logo">
-                <img src="logo-pesantren.png" alt="Logo Pesantren">
+                <img src="{{ asset('img/log.png') }}" alt="Logo Pesantren">
             </div>
             <div class="footer-info">
-                <h3>Yayasan Pesantren Al-Hidayah</h3>
-                <p>Jalan Pesantren No. 123, Desa Pesantren, Kecamatan Pesantren</p>
+                <h3>Poncil Darussalam Blokagung</h3>
+                <p>Jl. PP Darussalam Blokagung, Karangdoro, Tegalsari, Banyuwngi</p>
                 <p>Telepon: (123) 456-7890</p>
-                <p>Email: info@yayasanpesantren.com</p>
+                <p>Email: poncil@darussalam.com</p>
             </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/my.js') }}"></script>
 </body>
 </html>
