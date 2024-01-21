@@ -150,3 +150,6 @@ nav li:hover .dropdown {
 .scroll-to-top-btn:hover {
     background-color: #859981;
 }
+.fw-bold {
+    color: #000;
+}

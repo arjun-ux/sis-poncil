@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SantriBaruController;
+use App\Http\Controllers\Auth\LoginSantriController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/list-santri', [SantriBaruController::class, 'index'])->name('santri.list');
+// auth
+Route::get('/login-santri',[LoginSantriController::class,'index'])->name('login-santri');
