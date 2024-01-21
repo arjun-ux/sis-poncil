@@ -30,7 +30,7 @@
                 <li class="nav-item">
                     <a class="hover" href="#">PSB</a>
                     <div class="dropdown">
-                        <a class="hover" href="{{ route('santri.list') }}">SANTRI BARU</a>
+                        <a class="hover" href="">SANTRI BARU</a>
                         <a class="hover" href="#jalur-pendaftaran">BIAYA PENDAFTARAN</a>
                         <a class="hover" href="#alur-pendaftaran">ALUR PENDAFTARAN</a>
                             {{-- @if ($setting->count() === 0)
@@ -56,7 +56,7 @@
 
                 @guest
                     <li>
-                        <a class="hover" href="{{ route('login-santri') }}">Login</a>
+                        <a class="hover" href="/login">Login</a>
                     </li>
                     <li>
                         <a class="hover" href="/register-saba">Register</a>
@@ -66,11 +66,11 @@
                         <a href="#"><img alt="profil" class="rounded-circle img-fluid p-0"
                                 src="{{ asset('iaida/profile.jpg') }}" width="30"></a>
                         <div class="dropdown">
-                            @if (Auth::user()->role === 'saba')
+                            @if (Auth::user()->role_id === 2)
                                 <a class="hover" href="/dashba">My Profile</a>
                                 <a class="hover" data-bs-target="#modalMaba" data-bs-toggle="modal" href="#">Log
                                     Out</a>
-                            @elseif (Auth::user()->role === 'admin')
+                            @elseif (Auth::user()->role === 1)
                                 <a class="hover" href="/dashmin">Dashboard</a>
                                 <a class="hover" href="#" data-bs-toggle="modal" data-bs-target="#modalAdmin">Log Out</a>
 
