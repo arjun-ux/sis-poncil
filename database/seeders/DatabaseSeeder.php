@@ -23,13 +23,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'saba',
         ]);
         User::create([
-            'name' => 'Super admin',
+            'username' => 'admin',
             'email' => 'superadmin@gmail.com',
             'password'=> Hash::make('123123'),
             'role' => 'admin'
         ]);
         User::create([
-            'name' => 'Santri Baru',
+            'username' => 'saba',
             'email' => 'saba@gmail.com',
             'password'=> Hash::make('123123'),
             'role' => 'saba'

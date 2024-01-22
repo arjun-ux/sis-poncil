@@ -14,16 +14,16 @@ class RegisterController extends Controller
     {
         return view('auth.register');
     }
-    // function doRegister
+    // function doRegister santri baru
     public function doRegister(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'username' => 'required',
             'email' => 'required',
             'password' => 'required',
         ]);
         User::create([
-            'name'=>$request->name,
+            'username'=>$request->username,
             'email'=>$request->email,
             'password'=>$request->password,
             'role' => 'saba'

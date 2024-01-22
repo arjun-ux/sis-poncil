@@ -21,7 +21,7 @@
                         <div class="row align-items-center mb-3">
                             <div class="col-md-12">
                                 <div class="mt-2">
-                                    <input type="text" class="form-control" name="email" placeholder="Email">
+                                    <input type="text" class="form-control" name="username" placeholder="Username">
                                 </div>
                                 <div class="mt-2">
                                     <input type="password" class="form-control" name="password" placeholder="Password">

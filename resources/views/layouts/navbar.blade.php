@@ -30,7 +30,7 @@
                 <li class="nav-item">
                     <a class="hover" href="#">PSB</a>
                     <div class="dropdown">
-                        <a class="hover" href="{{ route('santri.list') }}">SANTRI BARU</a>
+                        {{-- <a class="hover" href="{{ route('santri.list') }}">SANTRI BARU</a> --}}
                         <a class="hover" href="#jalur-pendaftaran">BIAYA PENDAFTARAN</a>
                         <a class="hover" href="#alur-pendaftaran">ALUR PENDAFTARAN</a>
                             {{-- @if ($setting->count() === 0)
@@ -56,10 +56,10 @@
 
                 @guest
                     <li>
-                        <a class="hover" href="{{ route('login-santri') }}">Login</a>
+                        <a class="hover" href="{{ route('login') }}">Login</a>
                     </li>
                     <li>
-                        <a class="hover" href="/register-saba">Register</a>
+                        <a class="hover" href="{{ route('register') }}">Register</a>
                     </li>
                 @else
                     <li>

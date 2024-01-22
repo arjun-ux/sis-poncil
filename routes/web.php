@@ -32,9 +32,9 @@ Route::post('/login',[LoginController::class,'doLogin'])->name('doLogin');
 // dashboard saba
 Route::middleware('role:saba,admin')->group(function(){
     // dashboard saba
-    Route::get('/dashba',[SabaController::class,'index'])->name('dashba')->middleware('auth');
+    Route::get('/dashba',[SabaController::class,'index'])->name('dashba');
 });
 // dashboard admin
 Route::middleware('role:admin')->group(function(){
-    Route::get('/dashmin',[AdminController::class, 'index'])->name('dashmin')->middleware('auth');
+    Route::get('/dashmin',[AdminController::class, 'index'])->name('dashmin');
 });
