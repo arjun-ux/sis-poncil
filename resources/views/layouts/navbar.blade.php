@@ -63,7 +63,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="#"><img alt="profil" class="rounded-circle img-fluid p-0"
+                        <a class="hover" href="#"><img src="{{ asset('img/pp.png') }}" alt="profil" class="rounded-circle img-fluid p-0"
                                 src="{{ asset('iaida/profile.jpg') }}" width="30"></a>
                         <div class="dropdown">
                             @if (Auth::user()->role === 'saba')
@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-primary" data-bs-dismiss="modal" type="button">Cencel</button>
-                                    <a class="btn btn-danger" href="#">Logout</a>
+                                    <a class="btn btn-danger" href="{{ route('logout') }}">Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                                 <div class="modal-footer">
                                     <button class="btn btn-primary" data-bs-dismiss="modal"
                                         type="button">Cencel</button>
-                                    <a class="btn btn-danger" href="#">Logout</a>
+                                    <a class="btn btn-danger" href="{{ route('logout') }}">Logout</a>
                                 </div>
                             </div>
                         </div>

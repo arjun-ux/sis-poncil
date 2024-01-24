@@ -3,7 +3,7 @@
     padding: 0;
 }
 nav {
-    background-color: #567051;
+    background-color: #244d1c;
 }
 
 nav ul {
@@ -26,7 +26,7 @@ nav a {
 }
 
 nav .hover:hover {
-    /* background-color: #7cb36a; */
+    background-color: #7cb36a;
     color: black;
 }
 
@@ -36,7 +36,7 @@ nav .hover:hover {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #567051;
+    background-color: #244d1c;
     box-shadow: 0 2px 5px rgba(108, 145, 99, 0.2);
     z-index: 1;
 }

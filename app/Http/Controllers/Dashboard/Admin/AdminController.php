@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,3 +15,4 @@ class AdminController extends Controller
         return view('dashboard.admin.index', compact('saba'));
     }
 }
+

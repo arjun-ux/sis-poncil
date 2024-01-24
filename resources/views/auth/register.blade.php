@@ -20,7 +20,7 @@
                         <div class="row align-items-center mb-3">
                             <div class="col-md-12">
                                 <div class="mt-2">
-                                    <input type="text" id="inputPassword6" class="form-control" name="username" placeholder="Username">
+                                    <input type="text" id="inputPassword6" class="form-control" name="nama_lengkap" placeholder="Nama Lengkap">
                                 </div>
                                 <div class="mt-2">
                                     <input type="text" id="inputPassword6" class="form-control" name="email" placeholder="Email Aktif">

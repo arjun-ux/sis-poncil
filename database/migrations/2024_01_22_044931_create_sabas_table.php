@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('sabas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('nis')->unique();
+            $table->string('nik')->nullable();
+            $table->string('nokk')->nullable();
             $table->string('nama_lengkap')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->dateTime('tanggal_lahir')->nullable();
-            $table->enum('jenis_kelamin',['laki-laki','perempuan']);
+            $table->enum('jenis_kelamin',['laki-laki','perempuan'])->nullable();
             $table->text('alamat')-> nullable();
             $table->timestamps();
         });

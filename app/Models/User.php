@@ -44,5 +44,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
+    public function Saba()
+    {
+        return $this->belongsTo(Saba::class, 'user_id', 'id');
+    }
 }
