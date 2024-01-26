@@ -37,6 +37,7 @@ Route::middleware('role:saba')->group(function(){
     // dashboard saba
     Route::get('/dashba',[SabaController::class,'index'])->name('dashba');
     Route::get('/data-diri',[SabaController::class,'data_diri'])->name('data-diri');
+    Route::post('/data-diri/{id}',[SabaController::class,'updateDataDiri'])->name('upadateDataDiri');
 });
 // dashboard admin
 Route::middleware('role:admin')->group(function(){
