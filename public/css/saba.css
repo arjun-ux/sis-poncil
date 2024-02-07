@@ -47,15 +47,6 @@ nav .hover:hover {
 nav li:hover .dropdown {
     display: block;
 }
-/* .btn {
-    background-color: rgb(181, 194, 64);
-} */
-.btn:hover {
-    background-color: #4be24e;
-    color: #333;
-    border: none;
-}
-
 hr {
     margin-top: px ;
     border-top: 2px solid 17619;
@@ -67,12 +58,12 @@ ul {
 }
 
 li {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .pro {
     display: block;
     padding: 10px 20px;
-    background-color: #297c2c;
+    background-color: #0e5510;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -80,8 +71,12 @@ li {
 }
 
 .pro:hover {
-    background-color: #4be24e;
-    color: #333;
+    background-color: #a1cea3;
+    color: #000000;
+}
+.active {
+    background-color: #a1cea3;
+    color: #000000;
 }
 p {
     font-size: 20px;

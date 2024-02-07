@@ -31,6 +31,17 @@ class Saba extends Model
         }
         $nis = $getDuaAngka . $noUrut;
         return $nis;
-
+    }
+    public function Provinsi(){
+        return $this->belongsTo(Province::class,'provinsi');
+    }
+    public function Kabupaten(){
+        return $this->belongsTo(Regency::class,'kabupaten', 'id');
+    }
+    public function Kecamatan(){
+        return $this->belongsTo(District::class,'kecamatan', 'id');
+    }
+    public function Desa(){
+        return $this->belongsTo(Village::class,'desa', 'id');
     }
 }

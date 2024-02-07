@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Dashboard\Saba;
 
 use App\Http\Controllers\Controller;
 use App\Models\Saba;
-use App\Models\User;
+use App\Models\Regency;
+use App\Models\District;
+use App\Models\OrangTua;
+use App\Models\Province;
+use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class SabaController extends Controller
 {
@@ -15,23 +20,26 @@ class SabaController extends Controller
     {
         $saba = Auth::id();
         $dataSaba = Saba::where('user_id', $saba)->first();
-        // dd($dataSaba);
-        return view('dashboard.saba.index', compact('dataSaba'));
+        $dataOrtu = OrangTua::where('saba_id', $dataSaba->id)->first();
+        return view('dashboard.saba.index', compact('dataSaba','dataOrtu'));
     }
     // kelengkapan data saba
     public function data_diri(){
         $idUser = Auth::id();
+        $provinsi = Province::get();
         $sabaUser = Saba::where('user_id', $idUser)->first();
-        // dd($sabaUser);
-        return view('dashboard.saba.data_diri', compact('sabaUser'));
+        $dataOrtu = OrangTua::where('saba_id', $sabaUser->id)->first();
+        return view('dashboard.saba.data_diri', compact('sabaUser','provinsi','dataOrtu'));
     }
     // update data diri saba
-    public function updateDataDiri(Request $r, $id)
+    public function updateDataDiri(Request $r)
     {
         $r->validate([
             //
         ]);
         $userSaba = Auth::id();
+        $originalData = Saba::where('user_id' ,$userSaba)->first();
+        // dd($originalData);
         $data = Saba::where('user_id', $userSaba)->update([
             'nik' => $r->nik,
             'nokk' => $r->nokk,
@@ -39,8 +47,38 @@ class SabaController extends Controller
             'tempat_lahir' => $r->tempat_lahir,
             'tanggal_lahir' => $r->tanggal_lahir,
             'jenis_kelamin' => $r->jenis_kelamin,
+            'anak_ke' => $r->anak_ke,
+            'jumlah_saudara' => $r->jumlah_saudara,
+            'provinsi' => $r->provinsi,
+            'kabupaten' => $r->kabupaten,
+            'kecamatan' => $r->kecamatan,
+            'desa' => $r->desa,
+            'dusun' => $r->dusun,
+            'rt_rw' => $r->rt_rw,
             'alamat' => $r->alamat,
         ]);
-        return response()->json(['data'=> $data],200);
+
+        $dataOrtu = OrangTua::create([
+            'saba_id' => $originalData->id,
+        ]);
+        return Redirect::to(route('dataOrtu'))->with('success','Data Berhasil Di Ubah');
+    }
+
+    public function fetchkota(Request $request)
+    {
+        $data['kota'] = Regency::where("province_id", $request->province_id)->get(["name", "id"]);
+        return response()->json($data);
+    }
+
+    public function fetchKecamatan(Request $request)
+    {
+        $data['kecamatan'] = District::where("regency_id", $request->regency_id)->get(["name", "id"]);
+        return response()->json($data);
+    }
+
+    public function fetchDesa(Request $request)
+    {
+        $data['desa'] = Village::where("district_id", $request->district_id)->get(["name", "id"]);
+        return response()->json($data);
     }
 }

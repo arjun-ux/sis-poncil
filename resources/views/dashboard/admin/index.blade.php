@@ -1,4 +1,6 @@
 @extends('dashboard.admin.layouts.main')
 @section('content')
-    <h4>halaman admin</h4>
+<div class="row">
+    <h4>Selamat Datang, {{ Auth::user()->username }}</h4>
+</div>
 @endsection

@@ -11,8 +11,8 @@ class AdminController extends Controller
     // index
     public function index()
     {
-        $saba = Saba::all();
-        return view('dashboard.admin.index', compact('saba'));
+        $title = 'Dashboard';
+        return view('dashboard.admin.index', compact('title'));
     }
 }
 

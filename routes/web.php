@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Dashboard\Admin\AdminController;
+use App\Http\Controllers\Dashboard\Admin\AdminSabaController;
+use App\Http\Controllers\Dashboard\Saba\OrtuController;
 use App\Http\Controllers\Dashboard\Saba\SabaController;
 use App\Http\Controllers\HomeController;
 
@@ -38,8 +40,15 @@ Route::middleware('role:saba')->group(function(){
     Route::get('/dashba',[SabaController::class,'index'])->name('dashba');
     Route::get('/data-diri',[SabaController::class,'data_diri'])->name('data-diri');
     Route::post('/data-diri/{id}',[SabaController::class,'updateDataDiri'])->name('upadateDataDiri');
+    Route::get('/data-ortu', [OrtuController::class, 'index'])->name('dataOrtu');
+    Route::post('/data-ortu/{id}',[OrtuController::class, 'updateOrtu'])->name('updateOrtu');
 });
 // dashboard admin
 Route::middleware('role:admin')->group(function(){
     Route::get('/dashmin',[AdminController::class, 'index'])->name('dashmin');
+    Route::get('/saba-all', [AdminSabaController::class,'index'])->name('data_saba_all');
 });
+
+Route::post('api/fetch-kota', [SabaController::class, 'fetchkota']);
+Route::post('api/fetch-kecamatan', [SabaController::class, 'fetchKecamatan']);
+Route::post('api/fetch-desa', [SabaController::class, 'fetchDesa']);

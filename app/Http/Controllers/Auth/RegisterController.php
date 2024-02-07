@@ -35,6 +35,7 @@ class RegisterController extends Controller
             'nis' => Saba::generateNis(),
             'user_id' => $sabaUser->id,
             'nama_lengkap' => $request->nama_lengkap,
+            // 'status' => 'Register',
         ]);
         Mail::to($request->email)->send(new WelcomeMail($sabaUser, $saba));
         return redirect()->route("login");

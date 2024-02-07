@@ -66,13 +66,17 @@
                 <hr>
                 <ul>
                     <li>
-                        <a class="pro" href="{{ route('dashba') }}">Dashboard</a>
+                        <a class="pro active" href="{{ route('dashba') }}">Dashboard</a>
                     </li>
                     <li>
                         <a class="pro" href="{{ route('data-diri') }}">Data Diri</a>
                     </li>
                     <li>
-                        <a class="pro" href="{{ route('data-diri') }}">Data Orang Tua</a>
+                        @if ($dataOrtu)
+                        <a class="pro" href="{{ route('dataOrtu') }}">Data Orang Tua</a>
+                        @else
+                        <a class="pro" href="#">Data Orang Tua</a>
+                        @endif
                     </li>
                     <li>
                         <a class="pro" href="{{ route('data-diri') }}">Berkas Santri</a>

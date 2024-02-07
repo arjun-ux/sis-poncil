@@ -18,28 +18,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create([
-            'name' => 'admin',
+        $this->call(IndoRegionProvinceSeeder::class);
+        $this->call(IndoRegionRegencySeeder::class);
+        $this->call(IndoRegionDistrictSeeder::class);
+        $this->call(IndoRegionVillageSeeder::class);
+        DB::table('roles')->insert([
+            'name' => 'admin'
         ]);
-        Role::create([
-            'name' => 'saba',
+        DB::table('roles')->insert([
+            'name' => 'saba'
         ]);
-        User::create([
+        // table user admin
+        DB::table('users')->insert([
             'username' => 'admin',
             'email' => 'superadmin@gmail.com',
             'password'=> Hash::make('123123'),
             'role' => 'admin'
         ]);
-        User::create([
+        // table user saba
+        DB::table('users')->insert([
             'username' => Saba::generateNis(),
             'email' => 'saba@gmail.com',
             'password'=> Hash::make('123123'),
             'role' => 'saba'
         ]);
-
+        // table saba
         DB::table('sabas')->insert([
-            'nis' => Saba::generateNis(),
             'user_id' => 2,
+            'nis' => Saba::generateNis(),
             'nama_lengkap' => 'santri baru'
         ]);
     }
