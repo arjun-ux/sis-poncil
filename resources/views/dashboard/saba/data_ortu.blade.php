@@ -113,8 +113,6 @@
                               value="{{ $dataOrtu->no_hp_ibu }}">
                             </div>
                         </div>
-
-
                         <button class="btn btn-success" type="submit">Simpan</button>
                     </form>
                 </div>
@@ -135,6 +133,13 @@
                 </li>
                 <li>
                     <a class="pro active" href="{{ route('dataOrtu') }}">Data Orang Tua</a>
+                </li>
+                <li>
+                    @if ($dataAsalSekolah)
+                    <a class="pro" href="{{ route('asalSekolah') }}">Asal Sekolah</a>
+                    @else
+                    <a class="pro" href="#">Asal Sekolah</a>
+                    @endif
                 </li>
                 <li>
                     <a class="pro" href="{{ route('data-diri') }}">Berkas Santri</a>

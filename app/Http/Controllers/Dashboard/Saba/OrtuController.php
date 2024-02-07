@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Dashboard\Saba;
 use App\Http\Controllers\Controller;
 use App\Models\OrangTua;
 use App\Models\Saba;
+use App\Models\SabaMasukPondok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class OrtuController extends Controller
 {
@@ -16,8 +18,9 @@ class OrtuController extends Controller
         // $sabaUser = auth()->user();
         $saba = Saba::where('user_id', Auth::user()->id)->first();
         $dataOrtu = OrangTua::where('saba_id', $saba->id)->first();
+        $dataAsalSekolah = SabaMasukPondok::where('saba_id', $saba->id)->first();
         // dd($dataOrtu);
-        return view('dashboard.saba.data_ortu', compact('dataOrtu'));
+        return view('dashboard.saba.data_ortu', compact('dataOrtu','dataAsalSekolah'));
     }
     public function updateOrtu(Request $request, $id)
     {
@@ -37,8 +40,10 @@ class OrtuController extends Controller
             'pendidikan_ibu' => $request->pendidikan_ibu,
             'no_hp_ibu' => $request->no_hp_ibu,
         ]);
-
+        $sabaMasuk = SabaMasukPondok::create([
+            'saba_id' => $saba->id,
+        ]);
         // dd($request);
-        return 'Berhasil';
+        return Redirect::to(route('asalSekolah'))->with('success','Data Berhasil Di Input');
     }
 }

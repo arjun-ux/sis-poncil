@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('asal_sekolah')->nullable();
             $table->string('alamat_asal_sekolah')->nullable();
             $table->string('diterima_dikelas')->nullable();
-            $table->integer('nomor_surat_pindah')->nullable();
+            $table->integer('no_surat_pindah')->nullable();
             $table->timestamps();
         });
     }

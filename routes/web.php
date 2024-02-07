@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Dashboard\Admin\AdminController;
 use App\Http\Controllers\Dashboard\Admin\AdminSabaController;
+use App\Http\Controllers\Dashboard\Saba\AsalSekolahController;
 use App\Http\Controllers\Dashboard\Saba\OrtuController;
 use App\Http\Controllers\Dashboard\Saba\SabaController;
 use App\Http\Controllers\HomeController;
@@ -42,6 +43,7 @@ Route::middleware('role:saba')->group(function(){
     Route::post('/data-diri/{id}',[SabaController::class,'updateDataDiri'])->name('upadateDataDiri');
     Route::get('/data-ortu', [OrtuController::class, 'index'])->name('dataOrtu');
     Route::post('/data-ortu/{id}',[OrtuController::class, 'updateOrtu'])->name('updateOrtu');
+    Route::get('/asal-sekolah', [AsalSekolahController::class, 'index'])->name('asalSekolah');
 });
 // dashboard admin
 Route::middleware('role:admin')->group(function(){
