@@ -8,7 +8,7 @@
 </style>
 <div class="container py-5">
     <div class="row justify-content-center py-3">
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-8 col-lg-4">
             <div class="card">
                 <div class="card-header text-center border-light bg-white">
                     <img class="mb-3" src="{{ asset('img/log.png') }}" alt="" width="90px">
@@ -20,13 +20,30 @@
                         <div class="row align-items-center mb-3">
                             <div class="col-md-12">
                                 <div class="mt-2">
-                                    <input type="text" id="inputPassword6" class="form-control" name="nama_lengkap" placeholder="Nama Lengkap">
+                                    <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" name="nama_lengkap" placeholder="Nama Lengkap"
+                                    value="{{ old('nama_lengkap') }}" autofocus>
+                                    @error('nama_lengkap')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="mt-2">
-                                    <input type="text" id="inputPassword6" class="form-control" name="email" placeholder="Email Aktif">
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email Aktif"
+                                    value="{{ old('email') }}">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="mt-2">
-                                    <input type="password" id="inputPassword6" class="form-control" name="password" placeholder="Password">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

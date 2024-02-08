@@ -5,23 +5,24 @@
         <ul>{{ session('success') }}</ul>
     </div>
 @endif
-@if (session('warning'))
-    <div class="alert alert-warning" role="alert">
-        <ul>{{ session('warning') }}</ul>
-    </div>
-@endif
 <div class="container">
     <div class="row justify-content-center py-5">
         <div class="col-md-8 col-sm-8 col-xs-12 border mx-1 mt-1 p-3 align-items-center">
-            <div class="dashboard-info mb-3">
+            <div class="dashboard-info mb-3 d-flex">
                 <p>Data Diri</p>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn mobile" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <img src="{{ asset('img/menu.png') }}" width="25px" alt="">
+                </button>
+            </div>
+            <div class="dashboard-info mb-3">
                 <hr class="m-0">
             </div>
             <div class="data-dashboard">
                 <div class="col-md-12 col-sm-12 col-xs-12 px-2">
                     <form action="{{ route('upadateDataDiri', $sabaUser) }}" method="post">
                         @csrf
-                        <div class="row g-3 align-items-center mb-2">
+                        <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="inputnik" class="col-form-label">NIK</label>
                             </div>
@@ -30,7 +31,7 @@
                               value="{{ $sabaUser->nik }}">
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center mb-2">
+                        <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="inputnokk" class="col-form-label">NO KK</label>
                             </div>
@@ -39,7 +40,7 @@
                               value="{{ $sabaUser->nokk }}">
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center mb-2">
+                        <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="inputname" class="col-form-label">Nama Lengkap</label>
                             </div>
@@ -48,7 +49,7 @@
                               value="{{ $sabaUser->nama_lengkap }}">
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center mb-2">
+                        <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="inputlahir" class="col-form-label">Tempat Lahir</label>
                             </div>
@@ -57,7 +58,7 @@
                               value="{{ $sabaUser->tempat_lahir }}">
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center mb-2">
+                        <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="inputdateL" class="col-form-label">Tanggal Lahir</label>
                             </div>
@@ -66,7 +67,7 @@
                               value="{{ $sabaUser->tanggal_lahir }}">
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center mb-2">
+                        <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="inputJK" class="col-form-label">Jenis Kelamin</label>
                             </div>
@@ -78,7 +79,7 @@
                               </select>
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center mb-2">
+                        <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="province-dd" class="col-form-label">Provinsi</label>
                             </div>
@@ -95,7 +96,7 @@
                             </div>
                         </div>
 
-                        <div class="row g-3 align-items-center mb-2">
+                        <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="city-dd" class="col-form-label">Kabupaten</label>
                             </div>
@@ -104,7 +105,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center mb-2">
+                        <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="kecamatan-dd" class="col-form-label">Kcematan</label>
                             </div>
@@ -113,7 +114,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center mb-2">
+                        <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="desa-dd" class="col-form-label">Desa</label>
                             </div>
@@ -122,7 +123,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center mb-2">
+                        <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="inputdus" class="col-form-label">Dusun</label>
                             </div>
@@ -131,7 +132,7 @@
                               value="{{ $sabaUser->dusun }}">
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center mb-2">
+                        <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="inputrt" class="col-form-label">RT/RW</label>
                             </div>
@@ -140,7 +141,7 @@
                               value="{{ $sabaUser->rt_rw }}">
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center mb-2">
+                        <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="inputalam" class="col-form-label">Alamat</label>
                             </div>
@@ -158,7 +159,7 @@
 
         </div>
 
-        <div class="col-md-3 col-sm-3 col-xs-12 border mx-1 mt-1 p-2">
+        <div class="col-md-3 col-sm-3 col-xs-12 border mx-1 mt-1 p-2 mobile-pro">
             <p>Progres Pendaftaran</p>
             <hr>
             <ul>
@@ -192,6 +193,47 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel"><p>Progres Pendaftaran</p></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+                <ul>
+                    <li>
+                        <a class="pro" href="{{ route('dashba') }}">Dashboard</a>
+                    </li>
+                    <li>
+                        <a class="pro active" href="{{ route('data-diri') }}">Data Diri</a>
+                    </li>
+                    <li>
+                        @if ($dataOrtu)
+                        <a class="pro" href="{{ route('dataOrtu') }}">Data Orang Tua</a>
+                        @else
+                        <a class="pro" href="#">Data Orang Tua</a>
+                        @endif
+                    </li>
+                    <li>
+                        @if ($dataAsalSekolah)
+                        <a class="pro" href="{{ route('asalSekolah') }}">Asal Sekolah</a>
+                        @else
+                        <a class="pro" href="#">Asal Sekolah</a>
+                        @endif
+                    </li>
+                    <li>
+                        <a class="pro" href="#">Berkas Santri</a>
+                    </li>
+                    <li>
+                        <a class="pro" href="#">Validasi</a>
+                    </li>
+                </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 @endsection
 @push('script')
     <script>

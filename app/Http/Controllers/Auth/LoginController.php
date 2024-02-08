@@ -29,7 +29,7 @@ class LoginController extends Controller
             session()->regenerate();
             return redirect()->route('dashba');
         }
-        return back()->with('error', 'Email atau password Salah!!!');
+        return back()->with('error', 'Email atau Password Salah..!!!');
     }
     public function logout(Request $request)
     {

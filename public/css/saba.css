@@ -48,8 +48,8 @@ nav li:hover .dropdown {
     display: block;
 }
 hr {
-    margin-top: px ;
-    border-top: 2px solid 17619;
+    border: 4px solid 17619;
+    display: block;
 }
 ul {
     list-style: none;
@@ -101,6 +101,9 @@ p:before {
     width: 100%;
     float: left;
 }
+.dashboard-info .btn {
+    margin-left: auto;
+}
 .data-dashboard {
     width: 100%;
     display: flex;
@@ -108,4 +111,39 @@ p:before {
 .col-form-label{
     font-size: 16px;
     font-weight: bold;
+}
+.disabled-control {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none;
+}
+.disabled-control:focus {
+    box-shadow: none !important;
+}
+.rowMB {
+    margin-bottom: 0;
+    display: flex;
+}
+.mobile {
+    display: none;
+}
+.mobile-pro {
+    display: block;
+}
+@media (max-width: 767.98px) {
+    .data-dashboard {
+        flex-direction: column;
+    }
+    .data-dashboard .col-md-3 {
+        order: 1;
+    }
+    .data-dashboard .col-md-9 {
+        order: 2;
+    }
+    .mobile {
+        display: block;
+    }
+    .mobile-pro {
+        display: none;
+    }
 }
