@@ -17,7 +17,7 @@
                     <tr>
                         <td>{{ $item->nis }}</td>
                         <td>{{ $item->nama_lengkap }}</td>
-                        <td><a href="#" class="btn btn-warning">Edit</a></td>
+                        <td><a href="{{ route('showSaba', $item->id) }}" class="btn btn-warning">Detail</a></td>
                     </tr>
                 @endforeach
               </tbody>

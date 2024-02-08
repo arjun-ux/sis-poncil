@@ -17,10 +17,8 @@
     <!-- Custom CSS -->
     <link href="../assets/libs/flot/css/float-chart.css" rel="stylesheet" />
     {{--  Datatable  --}}
-    <link
-      href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css"
-      rel="stylesheet"
-    />
+    <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet"/>
+
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet" />
 
@@ -67,8 +65,8 @@
         </div>
 
         <footer class="footer text-center">
-          All Rights Reserved by Matrix-admin. Designed and Developed by
-          <a href="https://www.wrappixel.com">WrapPixel</a>.
+          All Rights Reserved by Poncil Darussalam Blokagung. Designed and Developed by
+          <a href="https://github.com/arjun-ux">Arjun</a>.
         </footer>
 
       </div>
@@ -77,28 +75,19 @@
 
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="../dist/js/waves.js"></script>
+    <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
     <!--Menu sidebar -->
-    <script src="../dist/js/sidebarmenu.js"></script>
+    <script src="{{ asset('dist/js/sidebarmenu.js') }}"></script>
     <!--Custom JavaScript -->
     <script src="../dist/js/custom.min.js"></script>
-    <!--This page JavaScript -->
-    <!-- <script src="../dist/js/pages/dashboards/dashboard1.js"></script> -->
-    <!-- Charts js Files -->
-
-    <script src="../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../assets/extra-libs/DataTables/datatables.min.js"></script>
     <script>
-      /****************************************
-       *       Basic Table                   *
-       ****************************************/
       $("#zero_config").DataTable();
     </script>
+    {{--  push script  --}}
+    @stack('script')
   </body>
 </html>

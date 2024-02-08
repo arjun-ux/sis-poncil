@@ -86,10 +86,10 @@
                         @endif
                     </li>
                     <li>
-                        <a class="pro" href="{{ route('data-diri') }}">Berkas Santri</a>
+                        <a class="pro" href="#">Berkas Santri</a>
                     </li>
                     <li>
-                        <a class="pro" href="{{ route('data-diri') }}">Validasi</a>
+                        <a class="pro" href="#">Validasi</a>
                     </li>
                 </ul>
             </div>
