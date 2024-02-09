@@ -17,32 +17,26 @@
                 <div class="card-body text-center">
                     <form action="{{ route('doRegister') }}" method="post">
                         @csrf
-                        <div class="row align-items-center mb-3">
+                        <div class="row mb-3">
                             <div class="col-md-12">
                                 <div class="mt-2">
                                     <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" name="nama_lengkap" placeholder="Nama Lengkap"
                                     value="{{ old('nama_lengkap') }}" autofocus>
                                     @error('nama_lengkap')
-                                        <span class="invalid-feedback" role="alert">
-                                            {{ $message }}
-                                        </span>
+                                        {{ $message }}
                                     @enderror
                                 </div>
                                 <div class="mt-2">
                                     <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email Aktif"
                                     value="{{ old('email') }}">
                                     @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            {{ $message }}
-                                        </span>
+                                        {{ $message }}
                                     @enderror
                                 </div>
                                 <div class="mt-2">
                                     <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
                                     @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            {{ $message }}
-                                        </span>
+                                        {{ $message }}
                                     @enderror
                                 </div>
                             </div>

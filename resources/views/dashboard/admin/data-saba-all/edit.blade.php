@@ -90,7 +90,7 @@
                 </div>
                 <div class="row g-3 align-items-center mb-2">
                     <div class="col-md-4">
-                      <label for="kecamatan-dd" class="col-form-label">Kcematan</label>
+                      <label for="kecamatan-dd" class="col-form-label">Kecamatan</label>
                     </div>
                     <div class="col-md-8">
                         <select class="form-control" id="kecamatan-dd" name="kecamatan">

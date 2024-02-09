@@ -6,9 +6,9 @@
     </div>
 @endif
 <div class="container">
-    <div class="row justify-content-center py-5">
+    <div class="row justify-content-center py-5 px-2">
         <div class="col-md-8 col-sm-8 col-xs-12 border mx-1 mt-1 p-3 align-items-center">
-            <div class="dashboard-info mb-3 d-flex">
+            <div class="dashboard-info d-flex">
                 <p>Data Asal Sekolah</p>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn mobile" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -20,24 +20,30 @@
             </div>
             <div class="data-dashboard">
                 <div class="col-md-12 col-sm-12 col-xs-12 px-2">
-                    <form action="" method="POST">
+                    <form action="{{ route('updateAsalSekolah', $sabaMasuk->id) }}" method="POST">
                         @csrf
                         <div class="row align-items-center mb-2">
                             <div class="col-md-4">
                               <label for="inputSekolahAsal" class="col-form-label">Asal Sekolah</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="text" id="inputSekolahAsal" class="form-control" name="asal_sekolah"
-                              value="{{ $sabaMasuk->asal_sekolah }}">
+                                <input type="text" id="inputSekolahAsal" class="form-control @error('asal_sekolah') is-invalid @enderror" name="asal_sekolah"
+                                value="{{ old('asal_sekolah', $sabaMasuk->asal_sekolah) }}">
+                                @error('asal_sekolah')
+                                    {{ $message }}
+                                @enderror
                             </div>
                         </div>
                         <div class="row align-items-center mb-2">
                             <div class="col-md-4">
-                              <label for="inputSekolahAsalalam" class="col-form-label">Alamat Asal Sekolah</label>
+                                <label for="inputSekolahAsalalam" class="col-form-label">Alamat Asal Sekolah</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="text" id="inputSekolahAsalalam" class="form-control" name="alamat_asal_sekolah"
-                              value="{{ $sabaMasuk->alamat_asal_sekolah }}">
+                                <input type="text" id="inputSekolahAsalalam" class="form-control @error('alamat_asal_sekolah') is-invalid @enderror" name="alamat_asal_sekolah"
+                                value="{{ old('alamat_asal_sekolah', $sabaMasuk->alamat_asal_sekolah) }}">
+                                @error('alamat_asal_sekolah')
+                                    {{ $message }}
+                                @enderror
                             </div>
                         </div>
                         <div class="row align-items-center mb-2">
@@ -54,8 +60,11 @@
                               <label for="inputnosuratPindah" class="col-form-label">No Surat Pindah</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="text" id="inputnosuratPindah" class="form-control" name="no_surat_pindah"
-                              value="{{ $sabaMasuk->no_surat_pindah }}">
+                                <input type="text" id="inputnosuratPindah" class="form-control @error('no_surat_pindah') is-invalid @enderror" name="no_surat_pindah"
+                                value="{{ old('no_surat_pindah', $sabaMasuk->no_surat_pindah) }}">
+                                @error('no_surat_pindah')
+                                        {{ $message }}
+                                @enderror
                             </div>
                         </div>
                         <button class="btn btn-success" type="submit">Simpan</button>
@@ -83,7 +92,7 @@
                     <a class="pro active" href="{{ route('asalSekolah') }}">Asal Sekolah</a>
                 </li>
                 <li>
-                    <a class="pro" href="{{ route('data-diri') }}">Berkas Santri</a>
+                    <a class="pro" href="{{ route('sabaBerkas') }}">Berkas Santri</a>
                 </li>
                 <li>
                     <a class="pro" href="{{ route('data-diri') }}">Validasi</a>
@@ -115,7 +124,7 @@
                     <a class="pro active" href="{{ route('asalSekolah') }}">Asal Sekolah</a>
                 </li>
                 <li>
-                    <a class="pro" href="#">Berkas Santri</a>
+                    <a class="pro" href="{{ route('sabaBerkas') }}">Berkas Santri</a>
                 </li>
                 <li>
                     <a class="pro" href="#">Validasi</a>

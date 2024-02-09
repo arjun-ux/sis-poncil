@@ -6,9 +6,9 @@
     </div>
 @endif
 <div class="container">
-    <div class="row justify-content-center py-5">
+    <div class="row justify-content-center py-5 px-2">
         <div class="col-md-8 col-sm-8 col-xs-12 border mx-1 mt-1 p-3 align-items-center">
-            <div class="dashboard-info mb-3 d-flex">
+            <div class="dashboard-info d-flex">
                 <p>Data Diri</p>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn mobile" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -184,7 +184,7 @@
                     @endif
                 </li>
                 <li>
-                    <a class="pro" href="#">Berkas Santri</a>
+                    <a class="pro" href="{{ route('sabaBerkas') }}">Berkas Santri</a>
                 </li>
                 <li>
                     <a class="pro" href="#">Validasi</a>
@@ -224,7 +224,7 @@
                         @endif
                     </li>
                     <li>
-                        <a class="pro" href="#">Berkas Santri</a>
+                        <a class="pro" href="{{ route('sabaBerkas') }}">Berkas Santri</a>
                     </li>
                     <li>
                         <a class="pro" href="#">Validasi</a>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Dashboard\Admin\AdminController;
 use App\Http\Controllers\Dashboard\Admin\AdminSabaController;
 use App\Http\Controllers\Dashboard\Saba\AsalSekolahController;
+use App\Http\Controllers\Dashboard\Saba\BerkasController;
 use App\Http\Controllers\Dashboard\Saba\OrtuController;
 use App\Http\Controllers\Dashboard\Saba\SabaController;
 use App\Http\Controllers\HomeController;
@@ -44,6 +45,8 @@ Route::middleware('role:saba')->group(function(){
     Route::get('/data-ortu', [OrtuController::class, 'index'])->name('dataOrtu');
     Route::post('/data-ortu/{id}',[OrtuController::class, 'updateOrtu'])->name('updateOrtu');
     Route::get('/asal-sekolah', [AsalSekolahController::class, 'index'])->name('asalSekolah');
+    Route::post('/asal-sekolah/{id}',[AsalSekolahController::class,'updateAsalSekolah'])->name( 'updateAsalSekolah');
+    Route::get('/berkas-saba', [BerkasController::class,'index'])->name('sabaBerkas');
 });
 // dashboard admin
 Route::middleware('role:admin')->group(function(){
