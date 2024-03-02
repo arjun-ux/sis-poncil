@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Saba;
 
 use App\Http\Controllers\Controller;
+use App\Models\Berkas;
 use App\Models\OrangTua;
 use App\Models\Saba;
 use App\Models\SabaMasukPondok;
@@ -19,8 +20,8 @@ class OrtuController extends Controller
         $saba = Saba::where('user_id', Auth::user()->id)->first();
         $dataOrtu = OrangTua::where('saba_id', $saba->id)->first();
         $dataAsalSekolah = SabaMasukPondok::where('saba_id', $saba->id)->first();
-        // dd($dataOrtu);
-        return view('dashboard.saba.data_ortu', compact('dataOrtu','dataAsalSekolah'));
+        $berkasSaba = Berkas::where('saba_id', $saba->id)->first();
+        return view('dashboard.saba.data_ortu', compact('dataOrtu','dataAsalSekolah','berkasSaba'));
     }
     public function updateOrtu(Request $request, $id)
     {

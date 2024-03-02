@@ -30,7 +30,7 @@ Route::get('/unauthorize', function() {
 })->name('unauthorized-page');
 
 // auth register
-Route::get('/register-saba',[RegisterController::class,'register'])->name('register');
+Route::get('/register-saba',[RegisterController::class,'register'])->name('register')->middleware('guest');
 Route::post('/register-saba',[RegisterController::class,'doRegister'])->name('doRegister');
 // auth login
 Route::get('/login',[LoginController::class,'login'])->name('login')->middleware('guest');
@@ -47,6 +47,7 @@ Route::middleware('role:saba')->group(function(){
     Route::get('/asal-sekolah', [AsalSekolahController::class, 'index'])->name('asalSekolah');
     Route::post('/asal-sekolah/{id}',[AsalSekolahController::class,'updateAsalSekolah'])->name( 'updateAsalSekolah');
     Route::get('/berkas-saba', [BerkasController::class,'index'])->name('sabaBerkas');
+    Route::post('/berkas-saba/{id}', [BerkasController::class, 'updateBerkas'])->name('updateBerkas');
 });
 // dashboard admin
 Route::middleware('role:admin')->group(function(){

@@ -9,7 +9,7 @@
     <div class="row justify-content-center py-5 px-2">
         <div class="col-md-8 col-sm-8 col-xs-12 border mx-1 mt-1 p-3 align-items-center">
             <div class="dashboard-info d-flex">
-                <p>Data Asal Sekolah</p>
+                <div class="p">Data Asal Sekolah</div>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn mobile" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <img src="{{ asset('img/menu.png') }}" width="25px" alt="">
@@ -76,7 +76,7 @@
         </div>
 
         <div class="col-md-3 col-sm-3 col-xs-12 border mx-1 mt-1 p-2 mobile-pro">
-            <p>Progres Pendaftaran</p>
+            <div class="p">Progres Pendaftaran</div>
             <hr>
             <ul>
                 <li>
@@ -92,7 +92,11 @@
                     <a class="pro active" href="{{ route('asalSekolah') }}">Asal Sekolah</a>
                 </li>
                 <li>
+                    @if ($berkasSaba)
                     <a class="pro" href="{{ route('sabaBerkas') }}">Berkas Santri</a>
+                    @else
+                    <a class="pro" href="#">Berkas Santri</a>
+                    @endif
                 </li>
                 <li>
                     <a class="pro" href="{{ route('data-diri') }}">Validasi</a>
@@ -106,7 +110,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel"><p>Progres Pendaftaran</p></h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><div class="p">Progres Pendaftaran</div></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -124,7 +128,11 @@
                     <a class="pro active" href="{{ route('asalSekolah') }}">Asal Sekolah</a>
                 </li>
                 <li>
+                    @if ($berkasSaba)
                     <a class="pro" href="{{ route('sabaBerkas') }}">Berkas Santri</a>
+                    @else
+                    <a class="pro" href="#">Berkas Santri</a>
+                    @endif
                 </li>
                 <li>
                     <a class="pro" href="#">Validasi</a>

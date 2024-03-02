@@ -22,12 +22,13 @@ class RegisterController extends Controller
     {
         $request->validate([
             'nama_lengkap' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
         ],[
             'nama_lengkap.required' => 'Nama Lengkap Wajib Di Isi',
             'email.required' => 'Email Wajib Di Isi',
             'email.email' => 'Harus Berupa Email',
+            'email.unique' => 'Email Sudah Terdaftar',
             'password.required' => 'Password Wajib Di Isi',
             'password.min' => 'Password Minimal 6 Karakter',
         ]);

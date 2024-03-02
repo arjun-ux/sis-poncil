@@ -78,24 +78,32 @@ li {
     background-color: #a1cea3;
     color: #000000;
 }
-p {
+.p {
     font-size: 20px;
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
 }
 
-p:first-child {
+.p:first-child {
     margin-top: 0;
 }
 
-p:before {
+.p:before {
     content: '';
     display: block;
     width: 50px;
     height: 5px;
     background-color: #4CAF50;
     margin-bottom: 10px;
+}
+.info-data-diri {
+    font-size: 17px;
+    font-style: italic;
+    color: #ff0000;
+    margin-bottom: 10px;
+    margin-top: 18px;
+    padding-left: 5px;
 }
 .dashboard-info {
     width: 100%;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Saba;
 
 use App\Http\Controllers\Controller;
+use App\Models\Berkas;
 use App\Models\Saba;
 use App\Models\SabaMasukPondok;
 use Illuminate\Http\Request;
@@ -16,8 +17,8 @@ class AsalSekolahController extends Controller
     {
         $saba = Saba::where('user_id', Auth::user()->id)->first();
         $sabaMasuk = SabaMasukPondok::where('saba_id' ,$saba->id )->first();
-        // dd($sabaMasuk);
-        return view('dashboard.saba.asal_sekolah', compact('sabaMasuk'));
+        $berkasSaba = Berkas::where('saba_id', $saba->id)->first();
+        return view('dashboard.saba.asal_sekolah', compact('sabaMasuk', 'berkasSaba'));
     }
     public function updateAsalSekolah(Request $request, $id)
     {
@@ -36,6 +37,9 @@ class AsalSekolahController extends Controller
             'alamat_asal_sekolah' => $request->alamat_asal_sekolah,
             'diterima_dikelas' => $request->diterima_dikelas,
             'no_surat_pindah' => $request->no_surat_pindah,
+        ]);
+        Berkas::create([
+            'saba_id' => $saba->id,
         ]);
         if ($sabaMasuk) {
             // redirect dengan pesan sukses

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Saba;
 
 use App\Http\Controllers\Controller;
+use App\Models\Berkas;
 use App\Models\Saba;
 use App\Models\Regency;
 use App\Models\District;
@@ -22,7 +23,9 @@ class SabaController extends Controller
         $dataSaba = Saba::where('user_id', Auth::user()->id)->first();
         $dataOrtu = OrangTua::where('saba_id', $dataSaba->id)->first();
         $dataAsalSekolah = SabaMasukPondok::where('saba_id', $dataSaba->id)->first();
-        return view('dashboard.saba.index', compact('dataSaba','dataOrtu','dataAsalSekolah'));
+        $berkasSaba = Berkas::where('saba_id', $dataSaba->id)->first();
+        // dd($berkasSaba);
+        return view('dashboard.saba.index', compact('dataSaba','dataOrtu','dataAsalSekolah','berkasSaba'));
     }
     // kelengkapan data saba
     public function data_diri(){
@@ -30,7 +33,8 @@ class SabaController extends Controller
         $sabaUser = Saba::where('user_id', Auth::user()->id)->first();
         $dataOrtu = OrangTua::where('saba_id', $sabaUser->id)->first();
         $dataAsalSekolah = SabaMasukPondok::where('saba_id', $sabaUser->id)->first();
-        return view('dashboard.saba.data_diri', compact('sabaUser','provinsi','dataOrtu','dataAsalSekolah'));
+        $berkasSaba = Berkas::where('saba_id', $sabaUser->id)->first();
+        return view('dashboard.saba.data_diri', compact('sabaUser','provinsi','dataOrtu','dataAsalSekolah','berkasSaba'));
     }
     // update data diri saba
     public function updateDataDiri(Request $r)
