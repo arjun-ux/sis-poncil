@@ -1,40 +1,35 @@
-<aside class="left-sidebar" data-sidebarbg="skin5">
-    <!-- Sidebar scroll-->
-    <div class="scroll-sidebar">
-      <!-- Sidebar navigation-->
-      <nav class="sidebar-nav">
-        <ul id="sidebarnav" class="pt-4">
-            <li class="sidebar-item">
-                <a
-                class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="{{ route('dashmin') }}"
-                aria-expanded="false"
-                ><i class="mdi mdi-view-dashboard"></i
-                ><span class="hide-menu">Dashboard</span></a>
-            </li>
-          <li class="sidebar-item">
-            <a
-              class="sidebar-link has-arrow waves-effect waves-dark"
-              href="javascript:void(0)"
-              aria-expanded="false"
-              ><i class="mdi mdi-move-resize-variant"></i
-              ><span class="hide-menu">Pondok </span></a>
-            <ul aria-expanded="false" class="collapse first-level">
-                <li class="sidebar-item">
-                    <a href="{{ route('data_saba_all') }}" class="sidebar-link"
-                    ><i class="mdi mdi-view-dashboard"></i
-                    ><span class="hide-menu"> Data Santri </span></a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link"
-                    ><i class="mdi mdi-multiplication-box"></i
-                    ><span class="hide-menu"> Data Asrama </span></a>
-                </li>
-            </ul>
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">ZakatApp</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Gallery
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                Users
+              </p>
+            </a>
           </li>
         </ul>
       </nav>
-      <!-- End Sidebar navigation -->
+      <!-- /.sidebar-menu -->
     </div>
-    <!-- End Sidebar scroll-->
+    <!-- /.sidebar -->
 </aside>
