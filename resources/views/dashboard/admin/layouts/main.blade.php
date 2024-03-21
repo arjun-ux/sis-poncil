@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Zakat App | Login</title>
+  <title>SIS PONCIL</title>
   <!-- css datatable -->
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap5.min.css') }}">
   <!-- Google Font: Source Sans Pro -->

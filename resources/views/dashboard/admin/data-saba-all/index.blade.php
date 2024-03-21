@@ -6,18 +6,18 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">User</h1>
+            <h1 class="m-0">Santri</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Add User
+                Add Santri
               </button>
               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                   <div class="modal-content">
                   <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Add Santri</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                       </button>
@@ -75,7 +75,11 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->nis }}</td>
                         <td>{{ $item->nama_lengkap }}</td>
-                        <td><a href="{{ route('showSaba', $item->id) }}" class="btn btn-warning">Detail</a></td>
+                        <td>
+                            <a href="{{ route('showSaba', $item->id) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>
+                            <a href="{{ route('showSaba', $item->id) }}" class="btn btn-success"><i class="fas fa-users"></i></a>
+                            <a href="{{ route('showSaba', $item->id) }}" class="btn btn-primary"><i class="far fa-file"></i></a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

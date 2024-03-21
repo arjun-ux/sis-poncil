@@ -11,7 +11,7 @@
       <li class="nav-item ">
         <div class="dropdown">
             <a href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                Selamat Datang, {{ Auth::user()->name }}
+                Selamat Datang, {{ Auth::user()->username }}
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>

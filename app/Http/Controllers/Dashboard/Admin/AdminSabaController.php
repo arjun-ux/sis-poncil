@@ -29,6 +29,14 @@ class AdminSabaController extends Controller
         // dd($dataSaba);
         return view('dashboard.admin.data-saba-all.edit', compact('title','provinsi','dataSaba'));
     }
+    // update saba
+    public function updateSaba(Request $request, $id){
+        $request->validate([
+            //
+        ]);
+        $saba = Saba::where('id', $id)->first();
+        dd($saba);
+    }
 
 
     public function fetchkota(Request $request)

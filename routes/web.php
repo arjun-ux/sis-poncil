@@ -51,9 +51,12 @@ Route::middleware('role:saba')->group(function(){
 });
 // dashboard admin
 Route::middleware('role:admin')->group(function(){
+    // dashboard
     Route::get('/dashmin',[AdminController::class, 'index'])->name('dashmin');
+    // data santri
     Route::get('/saba-all', [AdminSabaController::class,'index'])->name('data_saba_all');
     Route::get('/show-saba/{id}', [AdminSabaController::class, 'showSaba'])->name('showSaba');
+    Route::post('/saba/{id}/update', [AdminSabaController::class, 'updateSaba'])->name('updateSaba');
 });
 
 Route::post('api/fetch-kota', [SabaController::class, 'fetchkota']);
