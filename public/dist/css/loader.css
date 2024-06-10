@@ -1,0 +1,30 @@
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.459);
+    z-index: 999; /* Atur z-index untuk muncul di atas elemen lain */
+}
+.loader {
+    width: 60px;
+    aspect-ratio: 4;
+    --_g: no-repeat radial-gradient(circle closest-side,#000000 90%,#0000);
+    background:
+      var(--_g) 0%   50%,
+      var(--_g) 50%  50%,
+      var(--_g) 100% 50%;
+    background-size: calc(100%/3) 100%;
+    animation: l7 1s infinite linear;
+    position: absolute; /* Tambahkan properti position */
+    top: 50%; /* Atur posisi vertikal menjadi 50% */
+    left: 50%; /* Atur posisi horizontal menjadi 50% */
+    transform: translate(-50%, -50%); /* Pusatkan elemen */
+    z-index: 999; /* Atur z-index untuk muncul di atas elemen lain */
+  }
+  @keyframes l7 {
+      33%{background-size:calc(100%/3) 0%  ,calc(100%/3) 100%,calc(100%/3) 100%}
+      50%{background-size:calc(100%/3) 100%,calc(100%/3) 0%  ,calc(100%/3) 100%}
+      66%{background-size:calc(100%/3) 100%,calc(100%/3) 100%,calc(100%/3) 0%  }
+  }

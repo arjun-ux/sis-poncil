@@ -9,20 +9,33 @@ use App\Models\District;
 use App\Models\Village;
 use Illuminate\Http\Request;
 use App\Models\Saba;
+use App\Providers\RouteParamService as routeParam;
+use App\Providers\Service\IndoRegionService;
+use App\Providers\Service\SantriService;
+
 
 class AdminSabaController extends Controller
 {
-
+    protected $santri;
+    protected $indo;
+    public function __construct(SantriService $santri, IndoRegionService $indo)
+    {
+        $this->santri = $santri;
+        $this->indo = $indo;
+    }
     // index
     public function index()
     {
-        $title = 'Data Santri';
-        $saba = Saba::all();
-        return view('dashboard.admin.data-saba-all.index', compact('title','saba'));
+        return view('dashboard.admin.data-saba-all.index');
+    }
+    public function getAllSantri(){
+        $data = $this->santri->getAll();
+        return $data;
     }
     // detail Saba
     public function showSaba($id)
     {
+        $id = routeParam::decode($id);
         $title = "Detail Data Santri";
         $provinsi = Province::all();
         $dataSaba = Saba::where('id', $id)->first();
@@ -36,24 +49,5 @@ class AdminSabaController extends Controller
         ]);
         $saba = Saba::where('id', $id)->first();
         dd($saba);
-    }
-
-
-    public function fetchkota(Request $request)
-    {
-        $data['kota'] = Regency::where("province_id", $request->province_id)->get(["name", "id"]);
-        return response()->json($data);
-    }
-
-    public function fetchKecamatan(Request $request)
-    {
-        $data['kecamatan'] = District::where("regency_id", $request->regency_id)->get(["name", "id"]);
-        return response()->json($data);
-    }
-
-    public function fetchDesa(Request $request)
-    {
-        $data['desa'] = Village::where("district_id", $request->district_id)->get(["name", "id"]);
-        return response()->json($data);
     }
 }

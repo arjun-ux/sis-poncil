@@ -1,66 +1,13 @@
-@extends('dashboard.admin.layouts.main')
+@extends('dashboard.admin.layouts.app')
 @section('content')
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Santri</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Add Santri
-              </button>
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                  <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Add Santri</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <form action="#" method="post">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Nama</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="inputName" name="name">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="inputUsername" name="username">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="inputPassword" name="password">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                      </form>
-                  </div>
-                  </div>
-              </div>
-              </div>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- Modal -->
-    <!-- /.content-header -->
+
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <table class="table table-bordered table-stripped" id="table_user">
+        <div class="container-fluid">
+          <h2>Data Santri</h2>
+        <table class="table table-bordered table-stripped" id="tableSantri" style="width: 100%">
             <thead>
                 <tr>
                     <th>No</th>
@@ -70,18 +17,6 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($saba as $item)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->nis }}</td>
-                        <td>{{ $item->nama_lengkap }}</td>
-                        <td>
-                            <a href="{{ route('showSaba', $item->id) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>
-                            <a href="{{ route('showSaba', $item->id) }}" class="btn btn-success"><i class="fas fa-users"></i></a>
-                            <a href="{{ route('showSaba', $item->id) }}" class="btn btn-primary"><i class="far fa-file"></i></a>
-                        </td>
-                    </tr>
-                @endforeach
             </tbody>
         </table>
       </div><!-- /.container-fluid -->
@@ -91,7 +26,35 @@
 @endsection
 @push('script')
   <script>
-    $('#table_user').DataTable();
+    $(document).ready(function(){
+        $('#tableSantri').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '/getAllSantri',
+                type: 'GET',
+            },
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                {data: 'nis', name: 'nis'},
+                {data: 'nama_lengkap', name: 'nama_lengkap'},
+                {data: 'action', orderable: false, searchable: false}
+
+            ],
+            deferRender: true,  // Defer rendering for improved performance
+            paging: true,       // Enable pagination
+            pageLength: 5,     // Number of records per page
+        });
+    });
+
+    {{--  $.ajax({
+        url: '/getAllSantri',
+        type: 'GET',
+        cache: false,
+        success: function(res){
+            console.log(res);
+        }
+    });  --}}
   </script>
 @endpush
 

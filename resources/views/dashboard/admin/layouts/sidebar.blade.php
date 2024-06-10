@@ -1,7 +1,7 @@
 <aside id="sidebar">
     <div class="d-flex">
         <button class="toggle-btn" id="toggle-btn" type="button">
-            <i class="lni lni-grid-alt"></i>
+            <img src="{{ asset('img/log.png') }}" alt="logo" width="40px" style="margin-left: 0">
         </button>
         <div class="sidebar-logo">
             <a href="#">COMPANY</a>
@@ -9,15 +9,15 @@
     </div>
     <ul class="sidebar-nav">
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
+            <a href="{{ route('dashmin') }}" class="sidebar-link">
                 <i class="lni lni-dashboard"></i>
                 <span>Dashboard</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
-                <i class="lni lni-layout"></i>
-                <span>Tables</span>
+            <a href="{{ route('data_saba_all') }}" class="sidebar-link">
+                <i class="lni lni-consulting"></i>
+                <span>Data Santri</span>
             </a>
         </li>
         <li class="sidebar-item">
@@ -34,12 +34,6 @@
                     <a href="#" class="sidebar-link">Register User</a>
                 </li>
             </ul>
-        </li>
-        <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
-                <i class="lni lni-cog"></i>
-                <span>Setting</span>
-            </a>
         </li>
     </ul>
 </aside>

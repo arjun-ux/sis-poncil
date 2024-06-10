@@ -8,15 +8,17 @@
     <link href="{{ asset('dist/css/lineicons.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/datatable/dataTables.bootstrap5.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/datatable/dataTableExport/buttons.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/loader.css') }}">
 </head>
 <body>
     <div class="wrapper">
+        <div class="loader-container" id="loader-container" style="display: none"></div>
         @include('dashboard.admin.layouts.sidebar')
         <div class="main">
             @include('dashboard.admin.layouts.navbar')
             <main class="content px-3 py-4">
+                <div id="loader" class="loader"></div>
                 <div class="container-fluid">
                     @yield('content')
                 </div>
@@ -31,17 +33,31 @@
 {{--  dataTable export  --}}
 <script src="{{ asset('dist/js/datatable/dataTables.js') }}"></script>
 <script src="{{ asset('dist/js/datatable/dataTables.bootstrap5.js') }}"></script>
-<script src="{{ asset('dist/js/datatable/dataTableExport/dataTables.buttons.js') }}"></script>
-<script src="{{ asset('dist/js/datatable/dataTableExport/buttons.bootstrap5.js') }}"></script>
-<script src="{{ asset('dist/js/datatable/dataTableExport/jszip.min.js') }}"></script>
-<script src="{{ asset('dist/js/datatable/dataTableExport/pdfmake.min.js') }}"></script>
-<script src="{{ asset('dist/js/datatable/dataTableExport/vfs_fonts.js') }}"></script>
-<script src="{{ asset('dist/js/datatable/dataTableExport/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('dist/js/datatable/dataTableExport/buttons.print.min.js') }}"></script>
-<script src="{{ asset('dist/js/datatable/dataTableExport/buttons.colVis.min.js') }}"></script>
-
 {{--  main js  --}}
 <script src="{{ asset('dist/js/main.js') }}"></script>
+<script>
+    // loader when location reload
+    window.onbeforeunload = function() {
+        isLoading = true;
+        document.getElementById('loader').style.display = 'block';
+        document.getElementById('loader-container').style.display = 'block';
+    };
+    // Hide loader when page is loaded
+    window.onload = function() {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('loader-container').style.display = 'none';
+    };
+    // navigation history or back to page before
+    window.addEventListener('pageshow', function(event) {
+        // Cek apakah event.persisted adalah true, menunjukkan bahwa halaman dimuat kembali dari cache browser
+        if (event.persisted) {
+            // Tampilkan loader atau lakukan tindakan lain sesuai kebutuhan Anda
+            console.log('kembali ke halaman sebelum');
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('loader-container').style.display = 'none';
+        }
+    });
+</script>
 @stack('script')
 </body>
 </html>

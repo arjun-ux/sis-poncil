@@ -11,12 +11,19 @@ use App\Models\OrangTua;
 use App\Models\Province;
 use App\Models\SabaMasukPondok;
 use App\Models\Village;
+use App\Providers\Service\IndoRegionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
+
 class SabaController extends Controller
 {
+    protected $indo;
+    public function __construct(IndoRegionService $indo)
+    {
+        $this->indo = $indo;
+    }
     // index dashboard saba
     public function index()
     {
@@ -71,19 +78,19 @@ class SabaController extends Controller
 
     public function fetchkota(Request $request)
     {
-        $data['kota'] = Regency::where("province_id", $request->province_id)->get(["name", "id"]);
+        $data = $this->indo->Kota($request);
         return response()->json($data);
     }
 
     public function fetchKecamatan(Request $request)
     {
-        $data['kecamatan'] = District::where("regency_id", $request->regency_id)->get(["name", "id"]);
+        $data = $this->indo->Kecamatan($request);
         return response()->json($data);
     }
 
     public function fetchDesa(Request $request)
     {
-        $data['desa'] = Village::where("district_id", $request->district_id)->get(["name", "id"]);
+        $data = $this->indo->Desa($request);
         return response()->json($data);
     }
 }
