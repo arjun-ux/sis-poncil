@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Edit {{ $dataSaba->nama_lengkap }}</h1>
+            <h1 class="m-0">Edit {{ $data->nama_lengkap }}</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -24,15 +24,16 @@
       <div class="container-fluid">
         <div class="row p-2">
             <div class="col-md-12">
-                <form action="{{ route('updateSaba', $dataSaba->id) }}" method="post">
+                <form id="postUpdate">
                     @csrf
+                    <input type="hidden" name="dataid">
                     <div class="row g-3 align-items-center mb-2">
                         <div class="col-md-4">
                           <label for="inputnik" class="col-form-label">NIK</label>
                         </div>
                         <div class="col-md-8">
                           <input type="text" id="inputnik" class="form-control" name="nik"
-                          value="{{ $dataSaba->nik }}">
+                          value="{{ $data->nik }}">
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mb-2">
@@ -41,7 +42,7 @@
                         </div>
                         <div class="col-md-8">
                           <input type="text" id="inputnokk" class="form-control" name="nokk"
-                          value="{{ $dataSaba->nokk }}">
+                          value="{{ $data->nokk }}">
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mb-2">
@@ -50,7 +51,7 @@
                         </div>
                         <div class="col-md-8">
                           <input type="text" id="inputname" class="form-control" name="nama_lengkap"
-                          value="{{ $dataSaba->nama_lengkap }}">
+                          value="{{ $data->nama_lengkap }}">
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mb-2">
@@ -59,7 +60,7 @@
                         </div>
                         <div class="col-md-8">
                           <input type="text" id="inputlahir" class="form-control" name="tempat_lahir"
-                          value="{{ $dataSaba->tempat_lahir }}">
+                          value="{{ $data->tempat_lahir }}">
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mb-2">
@@ -68,7 +69,7 @@
                         </div>
                         <div class="col-md-8">
                           <input type="date" id="inputdateL" class="form-control" name="tanggal_lahir"
-                          value="{{ $dataSaba->tanggal_lahir }}">
+                          value="{{ $data->tanggal_lahir }}">
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mb-2">
@@ -78,8 +79,8 @@
                         <div class="col-md-8">
                           <select name="jenis_kelamin" id="inputJK" class="form-control">
                             <option value="">Pilih Jenis Kelamin</option>
-                            <option value="laki-laki" {{ $dataSaba->jenis_kelamin == 'laki-laki' ? 'selected' : '' }}>Laki-Laki</option>
-                            <option value="perempuan" {{ $dataSaba->jenis_kelamin == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
+                            <option value="laki-laki" {{ $data->jenis_kelamin == 'laki-laki' ? 'selected' : '' }}>Laki-Laki</option>
+                            <option value="perempuan" {{ $data->jenis_kelamin == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
                           </select>
                         </div>
                     </div>
@@ -89,8 +90,8 @@
                         </div>
                         <div class="col-md-8">
                             <select class="form-control" id="province-dd" name="provinsi">
-                                @if ($dataSaba->provinsi)
-                                <option value="{{ old('provinsi', $dataSaba->provinsi) }}">{{ $dataSaba->Provinsi->name }}</option>
+                                @if ($data->provinsi)
+                                <option value="{{ old('provinsi', $data->provinsi) }}">{{ $data->Provinsi->name }}</option>
                                 @endif
                                 <option value="">Pilih Provinsi</option>
                                 @foreach ($provinsi as $item)
@@ -133,7 +134,7 @@
                         </div>
                         <div class="col-md-8">
                           <input type="text" id="inputdus" class="form-control" name="dusun"
-                          value="{{ $dataSaba->dusun }}">
+                          value="{{ $data->dusun }}">
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mb-2">
@@ -142,7 +143,7 @@
                         </div>
                         <div class="col-md-8">
                           <input type="text" id="inputrt" class="form-control" name="rt_rw"
-                          value="{{ $dataSaba->rt_rw }}">
+                          value="{{ $data->rt_rw }}">
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mb-2">
@@ -151,7 +152,7 @@
                         </div>
                         <div class="col-md-8">
                           <input type="text" id="inputalam" class="form-control" name="alamat"
-                          value="{{ $dataSaba->alamat }}">
+                          value="{{ $data->alamat }}">
                         </div>
                     </div>
 
@@ -167,6 +168,32 @@
 @endsection
 @push('script')
     <script>
+        @php
+        use App\Providers\RouteParamService as routeParam;
+        @endphp
+        $('#postUpdate').submit(function(e){
+            e.preventDefault();
+            var id = '{{ routeParam::encode($data->id) }}'
+            $.ajax({
+                url: '/saba/'+id+'/update',
+                type: 'POST',
+                data: $('#postUpdate').serialize(),
+                success: function(res){
+                    Swal.fire({
+                        icon: 'success',
+                        title: res.message,
+                        toast: true,
+                        position: 'top-end',
+                        timer: 2000,
+                        showConfirmButton: false,
+                        timerProgressBar: true,
+                    });
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            })
+        })
         $(document).ready(function() {
             $('#province-dd').on('change', function() {
                 var idProvince = this.value;
@@ -231,10 +258,10 @@
                 });
             });
 
-            var prov = '{{ $dataSaba->provinsi }}'
-            var desa = '{{ $dataSaba->desa }}'
-            var kab = '{{ $dataSaba->kabupaten }}'
-            var kec = '{{ $dataSaba->kecamatan }}'
+            var prov = '{{ $data->provinsi }}'
+            var desa = '{{ $data->desa }}'
+            var kab = '{{ $data->kabupaten }}'
+            var kec = '{{ $data->kecamatan }}'
 
             var idProvince = this.value;
             if (prov) {

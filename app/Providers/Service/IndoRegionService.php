@@ -7,6 +7,11 @@ use Illuminate\Support\ServiceProvider;
 
 class IndoRegionService extends ServiceProvider
 {
+    // kota all
+    public static function Provinsi(){
+        $data = DB::table('provinces')->get(['name','id']);
+        return $data;
+    }
     // fetch-kota
     public static function Kota($request){
         $data['kota'] = DB::table('regencies')->where('province_id', $request->province_id)

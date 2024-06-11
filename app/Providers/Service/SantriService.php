@@ -2,31 +2,66 @@
 
 namespace App\Providers\Service;
 
+use App\Models\Saba;
 use App\Providers\RouteParamService as routeParam;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
-use Yajra\DataTables\Facades\DataTables;
+
 
 class SantriService extends ServiceProvider
 {
-
-
+    protected $request;
     // getAllData
     public static function getAll(){
         $data = DB::table('sabas')->get();
-        return DataTables::of($data)
-            ->addColumn('action', function($row){
-                $btn = '<a href="/show-saba/'.routeParam::encode($row->id).'" class="btn_edit btn btn-primary btn-sm"><i class="lni lni-pencil-alt "></i></a>';
-                $btn .= ' <a href="'.routeParam::encode($row->id).' " class="btn_pembayaran btn btn-warning btn-sm"><i class="lni lni-empty-file"></i></a>';
-                $btn .= ' <a href="#" data-id=" '.$row->id.' " class="btn_delete btn btn-danger btn-sm"><i class="lni lni-trash-can "></i></a>';
-                return $btn;
-            })
-            ->rawColumns(['action'])
-            ->addIndexColumn()
-            ->toJson();
+        return $data;
     }
     // get santri by id
     public static function getById($id){
+        $data = Saba::where('id', $id)->first();
+        return $data;
+    }
+    // create saba
+    public static function createSantri($request){
         //
+    }
+    // update saba
+    public static function updateSantri($request, $id){
+        $validator = Validator::make($request->all(), [
+            'nik' => 'required',
+        ],[
+            'nik.required' => 'Nik Tidak Boleh Kosong',
+        ]);
+        $id = routeParam::decode($id);
+        $saba = Saba::where('id', $id)->first();
+
+        if ($validator->fails()) {
+            return \Redirect::back()->withErrors($validator->errors())->withInput();
+        }else {
+            try {
+                $saba->update([
+                    'nik' => $request->nik,
+                    'nokk' => $request->nokk,
+                    'nama_lengkap' => $request->nama_lengkap,
+                    'tempat_lahir' => $request->tempat_lahir,
+                    'tanggal_lahir' => $request->tanggal_lahir,
+                    'jenis_kelamin' => $request->jenis_kelamin,
+                    'provinsi' => $request->provinsi,
+                    'kabupaten' => $request->kabupaten,
+                    'kecamatan' => $request->kecamatan,
+                    'desa' => $request->desa,
+                    'dusun' => $request->dusun,
+                    'rt_rw' => $request->rt_rw,
+                    'alamat' => $request->alamat,
+                ]);
+            return response()->json([
+                'message' => 'Data Berhasil di Ubah',
+            ], 201);
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+
+        }
     }
 }

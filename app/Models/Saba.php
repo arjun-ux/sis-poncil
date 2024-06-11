@@ -9,6 +9,7 @@ class Saba extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $tables = 'sabas';
     /**
      * Get the user that owns the Saba
      *
@@ -33,7 +34,7 @@ class Saba extends Model
         return $nis;
     }
     public function Provinsi(){
-        return $this->belongsTo(Province::class,'provinsi');
+        return $this->belongsTo(Province::class,'provinsi','id');
     }
     public function Kabupaten(){
         return $this->belongsTo(Regency::class,'kabupaten', 'id');

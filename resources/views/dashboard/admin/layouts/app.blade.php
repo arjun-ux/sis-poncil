@@ -8,6 +8,7 @@
     <link href="{{ asset('dist/css/lineicons.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/datatable/dataTables.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/loader.css') }}">
 </head>
@@ -33,6 +34,8 @@
 {{--  dataTable export  --}}
 <script src="{{ asset('dist/js/datatable/dataTables.js') }}"></script>
 <script src="{{ asset('dist/js/datatable/dataTables.bootstrap5.js') }}"></script>
+{{--  sweet  --}}
+<script src="{{ asset('dist/js/sweetalert2.all.min.js') }}"></script>
 {{--  main js  --}}
 <script src="{{ asset('dist/js/main.js') }}"></script>
 <script>
