@@ -171,6 +171,7 @@
         @php
         use App\Providers\RouteParamService as routeParam;
         @endphp
+
         $('#postUpdate').submit(function(e){
             e.preventDefault();
             var id = '{{ routeParam::encode($data->id) }}'
@@ -179,18 +180,34 @@
                 type: 'POST',
                 data: $('#postUpdate').serialize(),
                 success: function(res){
-                    Swal.fire({
-                        icon: 'success',
-                        title: res.message,
-                        toast: true,
-                        position: 'top-end',
-                        timer: 2000,
-                        showConfirmButton: false,
-                        timerProgressBar: true,
-                    });
+                    if(res.status == 201){
+                        Swal.fire({
+                            icon: 'success',
+                            title: res.message,
+                            toast: true,
+                            position: 'top-end',
+                            timer: 2000,
+                            showConfirmButton: false,
+                            timerProgressBar: true,
+                        }).then(()=>{
+                            location.reload();
+                        });
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: res.message,
+                            toast: true,
+                            position: 'top-end',
+                            timer: 2000,
+                            showConfirmButton: false,
+                            timerProgressBar: true,
+                        }).then(()=>{
+                            location.reload();
+                        });
+                    }
                 },
-                error: function(error){
-                    console.log(error);
+                error: function(xhr, status, error){
+                    console.log(xhr, status, error);
                 }
             })
         })

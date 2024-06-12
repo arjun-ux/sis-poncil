@@ -24,7 +24,7 @@ class AdminSabaController extends Controller
     {
         return view('dashboard.admin.data-saba-all.index');
     }
-
+    // datatable santri all
     public function getAllSantri(){
         $data = $this->santri->getAll();
         return DataTables::of($data)
@@ -37,6 +37,16 @@ class AdminSabaController extends Controller
             ->rawColumns(['action'])
             ->addIndexColumn()
             ->toJson();
+    }
+    // create santri
+    public function create(){
+        $provinsi = $this->indo->Provinsi();
+        return view('dashboard.admin.data-saba-all.create', compact('provinsi'));
+    }
+    // store santri
+    public function store(Request $request){
+        $data = $this->santri->StoreSantri($request);
+        return $data;
     }
     // detail Saba
     public function showSaba($id)

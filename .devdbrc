@@ -1,0 +1,11 @@
+[
+  {
+    "name": "SIS PONCIL", // <-- to identify the connection
+    "type": "mysql", // <- or "mariadb" if you are using MariaDB
+    "host": "<127.0.0.1>",
+    "port": "<3306>",
+    "username": "<root>",
+    "password": "<>",
+    "database": "sis_poncil" // <-- the database to show in VS Code DevDb view
+  }
+]

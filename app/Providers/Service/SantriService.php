@@ -23,8 +23,20 @@ class SantriService extends ServiceProvider
         return $data;
     }
     // create saba
-    public static function createSantri($request){
-        //
+    public static function StoreSantri($request){
+        $validator = Validator::make($request->all(), [
+            'nik' => 'required',
+        ],[
+            'nik.required' => 'Nik Wajib Di Isi'
+        ]);
+        $data = Saba::create([
+            'nik' => $request->nik,
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil Input Data',
+            'data' => $data
+        ]);
     }
     // update saba
     public static function updateSantri($request, $id){
@@ -37,7 +49,10 @@ class SantriService extends ServiceProvider
         $saba = Saba::where('id', $id)->first();
 
         if ($validator->fails()) {
-            return \Redirect::back()->withErrors($validator->errors())->withInput();
+            // return Redirect::back()->withErrors($validator->errors())->withInput();
+            return response()->json([
+                'message' => 'Gagal Validasi',
+            ]);
         }else {
             try {
                 $saba->update([
@@ -56,8 +71,9 @@ class SantriService extends ServiceProvider
                     'alamat' => $request->alamat,
                 ]);
             return response()->json([
+                'status' => 201,
                 'message' => 'Data Berhasil di Ubah',
-            ], 201);
+            ]);
             } catch (\Throwable $th) {
                 throw $th;
             }

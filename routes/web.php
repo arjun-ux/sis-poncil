@@ -56,6 +56,8 @@ Route::middleware('role:admin')->group(function(){
     // data santri
     Route::get('/saba-all', [AdminSabaController::class,'index'])->name('data_saba_all');
     Route::get('/getAllSantri', [AdminSabaController::class, 'getAllSantri']);
+    Route::get('/create', [AdminSabaController::class, 'create'])->name('create_saba');
+    Route::post('/store-santri', [AdminSabaController::class, 'store'])->name('store_santri');
     Route::get('/show-saba/{id}', [AdminSabaController::class, 'showSaba'])->name('showSaba');
     Route::post('/saba/{id}/update', [AdminSabaController::class, 'updateSaba'])->name('updateSaba');
 });

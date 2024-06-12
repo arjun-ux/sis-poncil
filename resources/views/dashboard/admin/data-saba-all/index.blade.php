@@ -5,6 +5,7 @@
     <section class="content">
         <div class="container-fluid">
           <h2>Data Santri</h2>
+          <a href="{{ route('create_saba') }}">Add Santri</a>
         <table class="table table-bordered table-stripped" id="tableSantri" style="width: 100%">
             <thead>
                 <tr>
