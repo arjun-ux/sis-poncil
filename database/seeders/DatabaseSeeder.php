@@ -24,12 +24,15 @@ class DatabaseSeeder extends Seeder
         $this->call(IndoRegionVillageSeeder::class);
         $this->call(PekerjaanSeeder::class);
         $this->call(PendidikanSeeder::class);
-        DB::table('roles')->insert([
-            'name' => 'admin'
-        ]);
-        DB::table('roles')->insert([
-            'name' => 'saba'
-        ]);
+        $roles = [
+            [
+                'name' => 'admin',
+            ],
+            [
+                'name' => 'saba',
+            ]
+        ];
+        DB::table('roles')->insert($roles);
         // table user admin
         DB::table('users')->insert([
             'username' => 'admin',
@@ -37,18 +40,18 @@ class DatabaseSeeder extends Seeder
             'password'=> Hash::make('123123'),
             'role' => 'admin'
         ]);
-        // table user saba
-        DB::table('users')->insert([
-            'username' => Saba::generateNis(),
-            'email' => 'saba@gmail.com',
-            'password'=> Hash::make('123123'),
-            'role' => 'saba'
-        ]);
-        // table saba
-        DB::table('sabas')->insert([
-            'user_id' => 2,
-            'nis' => Saba::generateNis(),
-            'nama_lengkap' => 'santri baru'
-        ]);
+        // // table user saba
+        // DB::table('users')->insert([
+        //     'username' => Saba::generateNis(),
+        //     'email' => 'saba@gmail.com',
+        //     'password'=> Hash::make('123123'),
+        //     'role' => 'saba'
+        // ]);
+        // // table saba
+        // DB::table('sabas')->insert([
+        //     'user_id' => 2,
+        //     'nis' => Saba::generateNis(),
+        //     'nama_lengkap' => 'santri baru'
+        // ]);
     }
 }

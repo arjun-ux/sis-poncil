@@ -2,6 +2,7 @@
 
 namespace App\Providers\Service;
 
+use App\Models\Berkas;
 use App\Models\OrangTua;
 use App\Models\Saba;
 use App\Models\User;
@@ -130,16 +131,72 @@ class SantriService extends ServiceProvider
                 'no_hp_wali' => $request->no_hp_wali,
             ]);
         }
+        // $santri = [
+        //     'saba_id' => 2,
+        // ];
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil Input Data',
+            'data' => $santri,
         ]);
     }
     // berkas store
     public static function storeBerkas($request){
-        if ($request->file) {
-            return 'oke file ada';
+        $request->validate([
+            'foto' => 'required',
+            'kk' => 'required',
+            'ktp_ortu' => 'required',
+        ],[
+            'foto.required' => 'Foto Wajib Di Isi',
+            'kk.required' => 'KK Wajib Di Isi',
+            'ktp_ortu.required' => 'KTP Ortu Wajib Di Isi',
+        ]);
+
+        $data = Saba::where('id', $request->idSaba)->first(['nama_lengkap']);
+
+        $foto = null;
+        $kk = null;
+        $ktp_ortu = null;
+        $ktp_wali = null;
+
+        if ($request->hasFile('foto')) {
+           $file = $request->file('foto');
+           $name = 'Foto'.'_'. $data->nama_lengkap .'.'. $file->getClientOriginalExtension();
+           $foto = $name;
+        }else{
+            $foto = $request->foto;
         }
+        if ($request->hasFile('kk')) {
+           $file = $request->file('kk');
+           $name = 'KK'.'_'. $data->nama_lengkap .'.'. $file->getClientOriginalExtension();
+           $kk = $name;
+        }else{
+            $kk = $request->kk;
+        }
+        if ($request->hasFile('ktp_ortu')) {
+           $file = $request->file('ktp_ortu');
+           $name = 'KTP_ORTU'.'_'. $data->nama_lengkap .'.'. $file->getClientOriginalExtension();
+           $ktp_ortu = $name;
+        }else{
+            $ktp_ortu = $request->ktp_ortu;
+        }
+        if ($request->hasFile('ktp_wali')) {
+           $file = $request->file('ktp_wali');
+           $name = 'KTP_WALI'.'_'. $data->nama_lengkap .'.'. $file->getClientOriginalExtension();
+           $ktp_wali = $name;
+        }else{
+            $ktp_wali = $request->ktp_wali;
+        }
+
+        $berkas = new Berkas();
+        $berkas->saba_id = $request->idSaba;
+        $berkas->foto = $foto;
+        $berkas->kk = $kk;
+        $berkas->ktp_ortu = $ktp_ortu;
+        $berkas->ktp_wali = $ktp_wali;
+        $berkas->save();
+
+        return response()->json(['message'=>'Berhasil Upload File','data'=>$berkas]);
     }
     // update saba
     public static function updateSantri($request, $id){

@@ -445,7 +445,8 @@
                     showConfirmButton: false,
                     timerProgressBar: true,
                 }).then(()=>{
-                    window.location.href = '/berkas';
+                    var sabaId = res.data.saba_id;
+                    window.location.href = '/berkas?saba='+sabaId;
                 });
             },
             error: function(xhr, error) {
