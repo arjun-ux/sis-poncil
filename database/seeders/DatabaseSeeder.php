@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(IndoRegionRegencySeeder::class);
         $this->call(IndoRegionDistrictSeeder::class);
         $this->call(IndoRegionVillageSeeder::class);
+        $this->call(PekerjaanSeeder::class);
+        $this->call(PendidikanSeeder::class);
         DB::table('roles')->insert([
             'name' => 'admin'
         ]);

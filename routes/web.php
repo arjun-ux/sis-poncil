@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Dashboard\Admin\AdminController;
 use App\Http\Controllers\Dashboard\Admin\AdminSabaController;
 use App\Http\Controllers\Dashboard\Saba\AsalSekolahController;
@@ -9,7 +10,8 @@ use App\Http\Controllers\Dashboard\Saba\BerkasController;
 use App\Http\Controllers\Dashboard\Saba\OrtuController;
 use App\Http\Controllers\Dashboard\Saba\SabaController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\PekerjaanController;
+use App\Http\Controllers\PendidikanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,4 +62,16 @@ Route::middleware('role:admin')->group(function(){
     Route::post('/store-santri', [AdminSabaController::class, 'store'])->name('store_santri');
     Route::get('/show-saba/{id}', [AdminSabaController::class, 'showSaba'])->name('showSaba');
     Route::post('/saba/{id}/update', [AdminSabaController::class, 'updateSaba'])->name('updateSaba');
+    // cek saudara kandung
+    Route::post('/saudara-kandung/{nikIbu}', [AdminSabaController::class, 'cekSaudaraKandung']);
+    Route::post('/updateSaudaraKandung/{sabaId}', [AdminSabaController::class, 'updateSaudaraKandung']);
+    // wali ayah dipilih
+    Route::post('/wali-ayah', [AdminSabaController::class, 'waliAyah']);
+    // user
+    Route::get('/user', [UserController::class, 'santri'])->name('user.index');
+    Route::get('/admin', [UserController::class, 'admin'])->name('admin.index');
 });
+// pekerjaan
+Route::get('/pekerjaan', [PekerjaanController::class, 'getAll']);
+// pendidikan
+Route::get('/pendidikan', [PendidikanController::class, 'getAll']);

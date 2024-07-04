@@ -4,20 +4,20 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-          <h2>Data Santri</h2>
-          <a href="{{ route('create_saba') }}">Add Santri</a>
-        <table class="table table-bordered table-stripped" id="tableSantri" style="width: 100%">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nis</th>
-                    <th>Nama</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+            <h2>Data Santri</h2>
+            <a class="btn btn-outline-success" href="{{ route('create_saba') }}">+<i class="lni lni-user"></i></a>
+            <table class="table table-bordered table-stripped" id="tableSantri" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nis</th>
+                        <th>Nama</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

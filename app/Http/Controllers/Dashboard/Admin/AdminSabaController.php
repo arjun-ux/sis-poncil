@@ -3,10 +3,17 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\OrangTua;
+use App\Models\Pekerjaan;
+use App\Models\Pendidikan;
+use App\Models\Saba;
 use Illuminate\Http\Request;
 use App\Providers\RouteParamService as routeParam;
 use App\Providers\Service\IndoRegionService;
 use App\Providers\Service\SantriService;
+use App\Providers\Service\UserService;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
 
@@ -31,7 +38,7 @@ class AdminSabaController extends Controller
             ->addColumn('action', function($row){
                 $btn = '<a href="/show-saba/'.routeParam::encode($row->id).'" class="btn_edit btn btn-primary btn-sm"><i class="lni lni-pencil-alt "></i></a>';
                 $btn .= ' <a href="'.routeParam::encode($row->id).' " class="btn_pembayaran btn btn-warning btn-sm"><i class="lni lni-empty-file"></i></a>';
-                $btn .= ' <a href="#" data-id=" '.$row->id.' " class="btn_delete btn btn-danger btn-sm"><i class="lni lni-trash-can "></i></a>';
+                $btn .= ' <a href="#" class="btn_delete btn btn-danger btn-sm"><i class="lni lni-trash-can "></i></a>';
                 return $btn;
             })
             ->rawColumns(['action'])
@@ -41,7 +48,28 @@ class AdminSabaController extends Controller
     // create santri
     public function create(){
         $provinsi = $this->indo->Provinsi();
-        return view('dashboard.admin.data-saba-all.create', compact('provinsi'));
+        $pekerjaan = Pekerjaan::all();
+        $pendidikan = Pendidikan::all();
+        return view('dashboard.admin.data-saba-all.create', compact('provinsi','pekerjaan','pendidikan'));
+    }
+    // cek saudara kandung
+    public function cekSaudaraKandung($nikIbu){
+        $data = OrangTua::where('nik_ibu', $nikIbu)->first(['nik_ibu','saba_id']);
+        if ($data) {
+            return response()->json([
+                'message' => 'Terdapat Data Saudara Kandung',
+                'data' => $data,
+            ]);
+        }else {
+            return response()->json(['status' => 404]);
+        }
+    }
+    // update saudara kandung
+    public function updateSaudaraKandung($sabaId){
+        Saba::where('id', $sabaId)->update([
+            'saudara_kandung' => 'YA'
+        ]);
+        return response()->json(['message' => 'Berhasil Update Data Saudara']);
     }
     // store santri
     public function store(Request $request){

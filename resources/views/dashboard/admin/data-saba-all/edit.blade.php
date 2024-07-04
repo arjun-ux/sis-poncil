@@ -1,5 +1,6 @@
 @extends('dashboard.admin.layouts.app')
 @section('content')
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -167,6 +168,7 @@
 </div>
 @endsection
 @push('script')
+
     <script>
         @php
         use App\Providers\RouteParamService as routeParam;
@@ -180,34 +182,25 @@
                 type: 'POST',
                 data: $('#postUpdate').serialize(),
                 success: function(res){
-                    if(res.status == 201){
-                        Swal.fire({
-                            icon: 'success',
-                            title: res.message,
-                            toast: true,
-                            position: 'top-end',
-                            timer: 2000,
-                            showConfirmButton: false,
-                            timerProgressBar: true,
-                        }).then(()=>{
-                            location.reload();
-                        });
-                    }else{
-                        Swal.fire({
-                            icon: 'error',
-                            title: res.message,
-                            toast: true,
-                            position: 'top-end',
-                            timer: 2000,
-                            showConfirmButton: false,
-                            timerProgressBar: true,
-                        }).then(()=>{
-                            location.reload();
-                        });
-                    }
+                    Swal.fire({
+                        icon: 'success',
+                        title: res.message,
+                        toast: true,
+                        position: 'top-end',
+                        timer: 2000,
+                        showConfirmButton: false,
+                        timerProgressBar: true,
+                    }).then(()=>{
+                        location.reload();
+                    });
                 },
-                error: function(xhr, status, error){
-                    console.log(xhr, status, error);
+                error: function(xhr, error) {
+                    let errorMessages = xhr.responseJSON.errors;
+                    Object.keys(errorMessages).forEach((key) => {
+                        errorMessages[key].forEach((errorMessage) => {
+                            toastr.info(errorMessage);
+                        });
+                    });
                 }
             })
         })
