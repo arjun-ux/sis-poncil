@@ -53,8 +53,8 @@ class AdminSabaController extends Controller
         return view('dashboard.admin.data-saba-all.create', compact('provinsi','pekerjaan','pendidikan'));
     }
     // cek saudara kandung
-    public function cekSaudaraKandung($nikIbu){
-        $data = OrangTua::where('nik_ibu', $nikIbu)->first(['nik_ibu','saba_id']);
+    public function cekSaudaraKandung($nokk){
+        $data = Saba::where('nokk', $nokk)->first(['nokk','id']);
         if ($data) {
             return response()->json([
                 'message' => 'Terdapat Data Saudara Kandung',

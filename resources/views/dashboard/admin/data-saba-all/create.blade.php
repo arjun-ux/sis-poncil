@@ -436,6 +436,7 @@
             type: "POST",
             data: $('#postCreate').serialize(),
             success: function(res){
+                console.log(res);
                 Swal.fire({
                     icon: "success",
                     title: res.message,
@@ -446,7 +447,9 @@
                     timerProgressBar: true,
                 }).then(()=>{
                     var sabaId = res.data.saba_id;
-                    window.location.href = '/berkas?saba='+sabaId;
+                    console.log(sabaId);
+
+                    {{--  window.location.href = '/berkas?saba='+sabaId;  --}}
                 });
             },
             error: function(xhr, error) {
@@ -462,14 +465,14 @@
     $(document).ready(function(){
 
         {{--  cek saudara kandung  --}}
-        $('#nik_ibu').on('input', function(){
-            var nik = $(this).val();
-            if (nik.length === 16){
+        $('#inputnokk').on('input', function(){
+            var nokk = $(this).val();
+            if (nokk.length === 16){
                 $.ajax({
-                    url: '/saudara-kandung/'+nik,
+                    url: '/saudara-kandung/'+nokk,
                     type: 'POST',
                     data: {
-                        nik: nik,
+                        nokk: nokk,
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(res){
@@ -489,7 +492,7 @@
                                     var id_saudara = res.data;
                                     updateSaudaraKandung(id_saudara);
                                 }else{
-                                    $('#nik_ibu').val(null);
+                                    $('#inputnokk').val(null);
                                 }
                             });
                         }
@@ -502,7 +505,7 @@
             }
         });
         function updateSaudaraKandung(id_saudara){
-            var id = id_saudara.saba_id;
+            var id = id_saudara.id;
             $.ajax({
                 url: '/updateSaudaraKandung/'+id,
                 type: 'POST',
