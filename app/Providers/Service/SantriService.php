@@ -130,12 +130,16 @@ class SantriService extends ServiceProvider
                 'no_hp_wali' => $request->no_hp_wali,
             ]);
         }
-
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil Input Data',
-            'data' => $santri
         ]);
+    }
+    // berkas store
+    public static function storeBerkas($request){
+        if ($request->file) {
+            return 'oke file ada';
+        }
     }
     // update saba
     public static function updateSantri($request, $id){

@@ -65,8 +65,8 @@ Route::middleware('role:admin')->group(function(){
     // cek saudara kandung
     Route::post('/saudara-kandung/{nikIbu}', [AdminSabaController::class, 'cekSaudaraKandung']);
     Route::post('/updateSaudaraKandung/{sabaId}', [AdminSabaController::class, 'updateSaudaraKandung']);
-    // wali ayah dipilih
-    Route::post('/wali-ayah', [AdminSabaController::class, 'waliAyah']);
+    // berkas
+    Route::get('/berkas', [AdminSabaController::class, 'createBerkas'])->name('berkas.index');
     // user
     Route::get('/user', [UserController::class, 'santri'])->name('user.index');
     Route::get('/admin', [UserController::class, 'admin'])->name('admin.index');

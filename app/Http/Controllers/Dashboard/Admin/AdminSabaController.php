@@ -76,6 +76,10 @@ class AdminSabaController extends Controller
         $data = $this->santri->StoreSantri($request);
         return $data;
     }
+    // create berkas
+    public function createBerkas(){
+        return view('dashboard.admin.data-saba-all.berkas');
+    }
     // detail Saba
     public function showSaba($id)
     {

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nama_wali')->nullable();
             $table->string('kedudukan_dalam_keluarga')->nullable();
             $table->string('alamat_wali')->nullable();
-            $table->integer('no_hp_wali')->nullable();
+            $table->string('no_hp_wali')->nullable();
             $table->timestamps();
         });
     }
