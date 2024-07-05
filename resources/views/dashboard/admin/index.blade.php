@@ -12,8 +12,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-sm font-weight-bold text-black text-uppercase mb-1">
-                                    Jumlah Santri Baru</div>
+                                <div class="text-sm fw-bold text-black text-uppercase mb-1">
+                                    Jumlah Santri </div>
                                 <div class="h5 mb-0 font-weight-bold">$40,000</div>
                             </div>
                             <div class="col-auto">
@@ -28,8 +28,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-sm font-weight-bold text-black text-uppercase mb-1">
-                                    Jumlah Santri Baru</div>
+                                <div class="text-md fw-bold text-black text-uppercase mb-1">
+                                    Pembayaran</div>
                                 <div class="h5 mb-0 font-weight-bold">$40,000</div>
                             </div>
                             <div class="col-auto">
@@ -44,8 +44,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-sm font-weight-bold text-black text-uppercase mb-1">
-                                    Jumlah Santri Baru</div>
+                                <div class="text-md fw-bold text-black text-uppercase mb-1">
+                                    Laporan</div>
                                 <div class="h5 mb-0 font-weight-bold">$40,000</div>
                             </div>
                             <div class="col-auto">
@@ -60,8 +60,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-sm font-weight-bold text-black text-uppercase mb-1">
-                                    Jumlah Santri Baru</div>
+                                <div class="text-md fw-bold text-black text-uppercase mb-1">
+                                    Kamar</div>
                                 <div class="h5 mb-0 font-weight-bold">$40,000</div>
                             </div>
                             <div class="col-auto">

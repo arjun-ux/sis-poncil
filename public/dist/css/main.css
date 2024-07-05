@@ -162,19 +162,36 @@ a.sidebar-link:hover {
 .navbar #sidebarCollapse {
     display: none;
 }
-
+#btn_modalSidebar{
+    display: none;
+}
 /* Hide the sidebar on Android devices */
 @media only screen and (max-width: 767px) and (hover: none) and (pointer: coarse) {
 
-    #sidebar.exMobile {
+    #sidebar {
         display: none;
     }
-
-    .navbar #sidebarCollapse {
-        background-color: transparent;
-        cursor: pointer;
-        border: 0;
-        padding: 1rem 1rem;
+    #btn_modalSidebar {
         display: block;
     }
+
+}
+.li_pro {
+    margin: 5px;
+}
+.pro {
+    font-weight: medium;
+    padding: 10px;
+    display: block;
+    padding: 10px 20px;
+    background-color: #0e5510;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.pro:hover {
+    background-color: #a1cea3;
+    border-left: 3px solid  #c8d4c8;
+    color: black;
 }
