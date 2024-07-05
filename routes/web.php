@@ -71,6 +71,8 @@ Route::middleware('role:admin')->group(function(){
     // user
     Route::get('/user', [UserController::class, 'santri'])->name('user.index');
     Route::get('/admin', [UserController::class, 'admin'])->name('admin.index');
+    // lihat data diri santri
+    Route::get('/lihat-santri/{id}', [AdminSabaController::class, 'lihatSantri']);
 });
 // pekerjaan
 Route::get('/pekerjaan', [PekerjaanController::class, 'getAll']);

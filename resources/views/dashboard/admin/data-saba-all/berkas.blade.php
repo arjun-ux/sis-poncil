@@ -142,6 +142,7 @@
 
     $('#postBerkas').submit(function(e){
         e.preventDefault();
+        $('#loader').show();
         var formData = new FormData(this);
         $.ajax({
             url: '/berkas',
@@ -150,6 +151,7 @@
             processData: false, //tidak memproses data (formdata)
             contentType: false, //tidak mengatur konten
             success: function(res){
+                $('#loader').hide();
                 Swal.fire({
                     icon: "success",
                     title: res.message,
@@ -163,6 +165,7 @@
                 });
             },
             error: function(xhr, error) {
+                $('#loader').hide();
                 let errorMessages = xhr.responseJSON.errors;
                 Object.keys(errorMessages).forEach((key) => {
                     errorMessages[key].forEach((errorMessage) => {

@@ -36,9 +36,9 @@ class AdminSabaController extends Controller
         $data = $this->santri->getAll();
         return DataTables::of($data)
             ->addColumn('action', function($row){
-                $btn = '<a href="/show-saba/'.routeParam::encode($row->id).'" class="btn_edit btn btn-primary btn-sm"><i class="lni lni-pencil-alt "></i></a>';
-                $btn .= ' <a href="'.routeParam::encode($row->id).' " class="btn_pembayaran btn btn-warning btn-sm"><i class="lni lni-empty-file"></i></a>';
-                $btn .= ' <a href="#" class="btn_delete btn btn-danger btn-sm"><i class="lni lni-trash-can "></i></a>';
+                $btn = '<a href="/show-saba/'.routeParam::encode($row->id).'" class="btn_edit btn btn-primary btn-sm mt-1"><i class="lni lni-pencil-alt"></i></a>';
+                $btn .= ' <a href="/lihat-santri/'.routeParam::encode($row->id).' " class="btn_pembayaran btn btn-warning btn-sm mt-1"><i class="lni lni-empty-file"></i></a>';
+                $btn .= ' <a href="#" class="btn_delete btn btn-danger btn-sm mt-1"><i class="lni lni-trash-can "></i></a>';
                 return $btn;
             })
             ->rawColumns(['action'])
@@ -89,8 +89,7 @@ class AdminSabaController extends Controller
         return $data;
     }
     // detail Saba
-    public function showSaba($id)
-    {
+    public function showSaba($id){
         $id = routeParam::decode($id);
         $data = $this->santri->getById($id);
         $provinsi = $this->indo->Provinsi();
@@ -100,5 +99,13 @@ class AdminSabaController extends Controller
     public function updateSaba(Request $request, $id){
         $data = $this->santri->updateSantri($request,$id);
         return $data;
+    }
+    // hanya lihat dan akan export pdf data diri santri
+    public function lihatSantri($id){
+        $id = routeParam::decode($id);
+        $datas = $this->santri->getById($id);
+        // dd($datas);
+        // $provinsi = $this->indo->Provinsi();
+        return view('dashboard.admin.data-saba-all.lihat_santri', compact('datas'));
     }
 }

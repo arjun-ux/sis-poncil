@@ -373,19 +373,16 @@
             $('#ayahIbu').show();
             $('#form-ortu').hide();
             $('#form-santri').hide();
-
             return;
         }else if(klickwali === 'Ibu'){
             $('#ayahIbu').show();
             $('#form-ortu').hide();
             $('#form-santri').hide();
-
             return;
         }else if(klickwali === 'Wali'){
             $('#form-wali').show();
             $('#form-ortu').hide();
             $('#form-santri').hide();
-
             return;
         }
         /* inputOptions can be an object or Promise */
@@ -400,6 +397,7 @@
             icon: "question",
             title: "Pilih Salah Satu Sebagai Wali",
             input: "radio",
+            showCancelButton: true,
             toast: true,
             inputOptions,
             inputValidator: (value) => {
@@ -423,8 +421,14 @@
                     $('#form-wali').show();
                 }
             }
-        }).then(()=>{
-            $('#submit').show();
+        }).then((value)=>{
+            if(value.isDismissed){
+                $('#infoWaliDiPilih').text('Silahkan Pilih Salah Satu Wali Untuk Melanjutkan Input Data');
+                $('#ayahIbu').show();
+                return;
+            }else{
+                $('#submit').show();
+            }
         });
         $('#form-ortu').hide();
         $('#form-santri').hide();
@@ -469,6 +473,7 @@
         $('#inputnokk').on('input', function(){
             var nokk = $(this).val();
             if (nokk.length === 16){
+                $('#loader').show();
                 $.ajax({
                     url: '/saudara-kandung/'+nokk,
                     type: 'POST',
@@ -477,6 +482,7 @@
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(res){
+                        $('#loader').hide();
                         if(res.status === 404){
                             console.log('Tidak Sekandung')
                         }else{
@@ -499,6 +505,7 @@
                         }
                     },
                     error: function(xhr, error){
+                        $('#loader').hide();
                         console.log(xhr);
                         console.log(error);
                     }
@@ -506,7 +513,7 @@
             }
         });
         function updateSaudaraKandung(id_saudara){
-            console.log(id_saudara)
+            $('#loader').show();
             $.ajax({
                 url: '/updateSaudaraKandung',
                 type: 'POST',
@@ -515,9 +522,11 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(res){
+                    $('#loader').hide();
                     console.log(res)
                 },
                 error: function(xhr, error){
+                    $('#loader').hide();
                     console.log(xhr)
                     console.log(error)
                 }
