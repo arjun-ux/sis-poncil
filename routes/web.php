@@ -64,7 +64,7 @@ Route::middleware('role:admin')->group(function(){
     Route::post('/saba/{id}/update', [AdminSabaController::class, 'updateSaba'])->name('updateSaba');
     // cek saudara kandung
     Route::post('/saudara-kandung/{nokk}', [AdminSabaController::class, 'cekSaudaraKandung']);
-    Route::post('/updateSaudaraKandung/{sabaId}', [AdminSabaController::class, 'updateSaudaraKandung']);
+    Route::post('/updateSaudaraKandung', [AdminSabaController::class, 'updateSaudaraKandung']);
     // berkas
     Route::get('/berkas', [AdminSabaController::class, 'createBerkas'])->name('berkas.index');
     Route::post('/berkas', [AdminSabaController::class, 'store_berkas'])->name('store.berkas');

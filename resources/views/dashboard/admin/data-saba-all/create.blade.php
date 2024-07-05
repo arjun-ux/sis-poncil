@@ -446,10 +446,8 @@
                     showConfirmButton: false,
                     timerProgressBar: true,
                 }).then(()=>{
-                    var sabaId = res.data.saba_id;
-                    console.log(sabaId);
-
-                    {{--  window.location.href = '/berkas?saba='+sabaId;  --}}
+                    var sabaId = res.data.id;
+                    window.location.href = '/berkas?saba='+sabaId;
                 });
             },
             error: function(xhr, error) {
@@ -479,6 +477,7 @@
                         if(res.status === 404){
                             console.log('Tidak Sekandung')
                         }else{
+
                             Swal.fire({
                                 icon: 'info',
                                 title: res.message,
@@ -505,12 +504,12 @@
             }
         });
         function updateSaudaraKandung(id_saudara){
-            var id = id_saudara.id;
+            console.log(id_saudara)
             $.ajax({
-                url: '/updateSaudaraKandung/'+id,
+                url: '/updateSaudaraKandung',
                 type: 'POST',
                 data: {
-                    sabaId : id,
+                    data : id_saudara,
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(res){

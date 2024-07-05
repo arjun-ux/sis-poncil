@@ -165,9 +165,11 @@ a.sidebar-link:hover {
 
 /* Hide the sidebar on Android devices */
 @media only screen and (max-width: 767px) and (hover: none) and (pointer: coarse) {
-    #sidebar {
+
+    #sidebar.exMobile {
         display: none;
     }
+
     .navbar #sidebarCollapse {
         background-color: transparent;
         cursor: pointer;
@@ -176,6 +178,3 @@ a.sidebar-link:hover {
         display: block;
     }
 }
-
-@media (min-width: 768px) {}
-

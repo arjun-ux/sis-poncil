@@ -1,5 +1,8 @@
 <nav class="navbar navbar-expand px-4 py-3">
-    <button class="toggle-btn" id="sidebarCollapse">&#9776;</button>
+    <label for="sidebarCollapse">&#9776;</label>
+    <input type="checkbox" id="sidebarCollapse" hidden />
+
+    {{--  <button class="toggle-btn" id="sidebarCollapse">&#9776;</button>  --}}
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">

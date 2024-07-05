@@ -54,22 +54,26 @@ class AdminSabaController extends Controller
     }
     // cek saudara kandung
     public function cekSaudaraKandung($nokk){
-        $data = Saba::where('nokk', $nokk)->first(['nokk','id']);
+        $data = Saba::where('nokk', $nokk)->get(['nokk','id']);
+
         if ($data) {
             return response()->json([
                 'message' => 'Terdapat Data Saudara Kandung',
                 'data' => $data,
+
             ]);
         }else {
             return response()->json(['status' => 404]);
         }
     }
     // update saudara kandung
-    public function updateSaudaraKandung($sabaId){
-        Saba::where('id', $sabaId)->update([
-            'saudara_kandung' => 'YA'
-        ]);
-        return response()->json(['message' => 'Berhasil Update Data Saudara']);
+    public function updateSaudaraKandung(Request $request){
+        $items = $request->data;
+        foreach ($items as $val) {
+            $id = $val['id'];
+            Saba::where('id', $id)->update(['saudara_kandung' => 'YA']);
+        }
+        return response()->json(['message' => 'Berhasil Update Data Saudara', 'item'=>$items]);
     }
     // store santri
     public function store(Request $request){
