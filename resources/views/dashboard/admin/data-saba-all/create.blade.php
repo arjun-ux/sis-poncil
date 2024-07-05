@@ -431,12 +431,14 @@
     });
     $('#postCreate').submit(function(e){
         e.preventDefault();
+        $('#loader').show();
         $.ajax({
             url: "{{ url('/store-santri') }}",
             type: "POST",
             data: $('#postCreate').serialize(),
             success: function(res){
                 console.log(res);
+                $('#loader').hide();
                 Swal.fire({
                     icon: "success",
                     title: res.message,
@@ -451,6 +453,7 @@
                 });
             },
             error: function(xhr, error) {
+                $('#loader').hide();
                 let errorMessages = xhr.responseJSON.errors;
                 Object.keys(errorMessages).forEach((key) => {
                     errorMessages[key].forEach((errorMessage) => {
