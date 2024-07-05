@@ -477,7 +477,6 @@
                         if(res.status === 404){
                             console.log('Tidak Sekandung')
                         }else{
-
                             Swal.fire({
                                 icon: 'info',
                                 title: res.message,

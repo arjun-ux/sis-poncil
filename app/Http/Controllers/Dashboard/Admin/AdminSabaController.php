@@ -54,16 +54,15 @@ class AdminSabaController extends Controller
     }
     // cek saudara kandung
     public function cekSaudaraKandung($nokk){
-        $data = Saba::where('nokk', $nokk)->get(['nokk','id']);
-
-        if ($data) {
+        $data = Saba::where('nokk', $nokk)->first(['nokk','id']);
+        // return response()->json(['data'=>$data]);
+        if ($data == null) {
+            return response()->json(['status' => 404]);
+        }else {
             return response()->json([
                 'message' => 'Terdapat Data Saudara Kandung',
                 'data' => $data,
-
             ]);
-        }else {
-            return response()->json(['status' => 404]);
         }
     }
     // update saudara kandung
