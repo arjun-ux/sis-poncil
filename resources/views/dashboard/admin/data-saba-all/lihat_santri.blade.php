@@ -18,6 +18,40 @@
                     </div>
                 </div>
 
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @if ($datas['berkas'] == null)
+                                        <img class="img-thumbnail" src="{{ asset('img/preview-image.png') }}" alt="pp">
+                                    @else
+                                    <h5>FOto</h5>
+                                        <img class="img-thumbnail" src="{{ asset('storage/'. $datas['berkas']->foto) }}" alt="foto-profile-santri">
+                                    @endif
+                                    @if ($datas['berkas'] == null)
+                                        <img class="img-thumbnail" src="{{ asset('img/preview-image.png') }}" alt="pp">
+                                    @else
+                                    <h5>KK</h5>
+                                        <img class="img-thumbnail" src="{{ asset('storage/'. $datas['berkas']->kk) }}" alt="foto-profile-santri">
+                                    @endif
+                                    @if ($datas['berkas'] == null)
+                                        <img class="img-thumbnail" src="{{ asset('img/preview-image.png') }}" alt="pp">
+                                    @else
+                                    <h5>KTP ORTU</h5>
+                                        <img class="img-thumbnail" src="{{ asset('storage/'. $datas['berkas']->ktp_ortu) }}" alt="foto-profile-santri">
+                                    @endif
+                                    @if ($datas['berkas'] == null)
+                                        <img class="img-thumbnail" src="{{ asset('img/preview-image.png') }}" alt="pp">
+                                    @else
+                                    <h5>KTP WALI</h5>
+                                        <img class="img-thumbnail" src="{{ asset('storage/'. $datas['berkas']->ktp_wali) }}" alt="foto-profile-santri">
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
       </div><!-- /.container-fluid -->

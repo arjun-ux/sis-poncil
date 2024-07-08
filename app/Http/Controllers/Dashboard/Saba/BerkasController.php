@@ -19,10 +19,10 @@ class BerkasController extends Controller
         // dd($berkas);
         return view('dashboard.saba.berkas', compact('saba', 'berkas'));
     }
-    public function updateBerkas(Request $request, $id)
+    public function updateBerkas(Request $request)
     {
         $saba = Saba::where('user_id', Auth::user()->id)->first();
-        $berkas = Berkas::where('saba_id', $saba->id)->latest()->first();
+        $berkas = Berkas::where('saba_id', $saba->id)->first();
         $saba_name = $saba->nama_lengkap;
         $replaceName = str_replace(' ','_', $saba_name);
 
@@ -34,52 +34,48 @@ class BerkasController extends Controller
         // file foto
         if ($request->hasFile('foto')) {
             // jika berkasnya null, maka
-            if ($berkas && File::exists(public_path('foto/'.$berkas->foto))) {
+            if ($berkas && File::exists(storage_path('fotos/'.$berkas->foto))) {
                 unlink('foto/' . $berkas->foto);
             }
             $file = $request->file('foto');
-            $name = $replaceName . '.' . date('YmdHis') . '.' . 'foto' . '.' .$file->getClientOriginalExtension();
-            $file->move(public_path(). '/foto', $name);
-            $foto = $name;
+            $name = 'Foto'.'_'. $replaceName .'.'. $file->getClientOriginalExtension();
+            $foto = $file->storeAs('fotos', $name, 'public');
         }else{
             $foto = $berkas->foto;
         }
         // file kk
         if ($request->hasFile('kk')) {
             // jika berkasnya null, maka
-            if ($berkas && File::exists(public_path('kk/'.$berkas->kk))) {
+            if ($berkas && File::exists(storage_path('kk/'.$berkas->kk))) {
                 unlink('kk/' . $berkas->kk);
             }
             $file = $request->file('kk');
-            $name = $replaceName . '.' . date('YmdHis') . '.' . 'kk' . '.' .$file->getClientOriginalExtension();
-            $file->move(public_path(). '/kk', $name);
-            $kk = $name;
+            $name = 'KK'.'_'. $replaceName .'.'. $file->getClientOriginalExtension();
+            $kk = $file->storeAs('kks', $name, 'public');
         }else{
             $kk = $berkas->kk;
         }
         // file ktp_ortu
         if ($request->hasFile('ktp_ortu')) {
             // jika berkasnya null, maka
-            if ($berkas && File::exists(public_path('ktp_ortu/'.$berkas->ktp_ortu))) {
+            if ($berkas && File::exists(storage_path('ktp_ortu/'.$berkas->ktp_ortu))) {
                 unlink('ktp_ortu/' . $berkas->ktp_ortu);
             }
             $file = $request->file('ktp_ortu');
-            $name = $replaceName . '.' . date('YmdHis') . '.' . 'ktp_ortu' . '.' .$file->getClientOriginalExtension();
-            $file->move(public_path(). '/ktp_ortu', $name);
-            $ktp_ortu = $name;
+            $name = 'KTP_ORTU'.'_'. $replaceName .'.'. $file->getClientOriginalExtension();
+            $ktp_ortu = $file->storeAs('ktp_ortus', $name, 'public');
         }else{
             $ktp_ortu = $berkas->ktp_ortu;
         }
         // file ktp_wali
         if ($request->hasFile('ktp_wali')) {
             // jika berkasnya null, maka
-            if ($berkas && File::exists(public_path('ktp_wali/'.$berkas->ktp_wali))) {
+            if ($berkas && File::exists(storage_path('ktp_wali/'.$berkas->ktp_wali))) {
                 unlink('ktp_wali/' . $berkas->ktp_wali);
             }
             $file = $request->file('ktp_wali');
-            $name = $replaceName . '.' . date('YmdHis') . '.' . 'ktp_wali' . '.' .$file->getClientOriginalExtension();
-            $file->move(public_path(). '/ktp_wali', $name);
-            $ktp_wali = $name;
+            $name = 'KTP_WALI'.'_'. $replaceName .'.'. $file->getClientOriginalExtension();
+            $ktp_wali = $file->storeAs('ktp_walis', $name, 'public');
         }else{
             $ktp_wali = $berkas->ktp_wali;
         }

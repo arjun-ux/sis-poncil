@@ -94,50 +94,46 @@
                                 <div class="col-md-3 col-lg-3">
                                     <h5>Foto</h5>
                                     <div class="file-upload-container">
-                                        <img src="{{ asset($berkas->foto ? 'foto/'.$berkas->foto :'img/preview-image.png') }}" alt="Gambar" class="file-upload-image preview-foto" id="previewFoto2">
+                                        <img src="{{ asset($berkas->foto ? 'storage/'.$berkas->foto :'img/preview-image.png') }}" alt="Gambar" class="file-upload-image preview-foto" id="previewFoto2">
                                         <div class="file-upload-overlay">
                                             <i class="fas fa-camera"></i>
                                             <p>Pilih Gambar</p>
                                             <input type="file" class="file-upload-input" id="previewFotoInput2" name="foto">
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-outline-danger">Hapus</button>
                                 </div>
                                 <div class="col-md-3 col-lg-3">
                                     <h5>KK</h5>
                                     <div class="file-upload-container">
-                                        <img src="{{ asset($berkas->kk ? 'kk/'.$berkas->kk :'img/preview-image.png') }}" alt="Gambar" class="file-upload-image preview-foto" id="previewFoto3">
+                                        <img src="{{ asset($berkas->kk ? 'storage/'.$berkas->kk :'img/preview-image.png') }}" alt="Gambar" class="file-upload-image preview-foto" id="previewFoto3">
                                         <div class="file-upload-overlay">
                                             <i class="fas fa-camera"></i>
                                             <p>Pilih Gambar</p>
                                             <input type="file" class="file-upload-input" id="previewFotoInput3" name="kk">
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-outline-danger">Hapus</button>
                                 </div>
                                 <div class="col-md-3 col-lg-3">
                                     <h5>KTP Ortu</h5>
                                     <div class="file-upload-container">
-                                        <img src="{{ asset($berkas->ktp_ortu ? 'ktp_ortu/'.$berkas->ktp_ortu :'img/preview-image.png') }}" alt="Gambar" class="file-upload-image preview-foto" id="previewFoto4">
+                                        <img src="{{ asset($berkas->ktp_ortu ? 'storage/'.$berkas->ktp_ortu :'img/preview-image.png') }}" alt="Gambar" class="file-upload-image preview-foto" id="previewFoto4">
                                         <div class="file-upload-overlay">
                                             <i class="fas fa-camera"></i>
                                             <p>Pilih Gambar</p>
                                             <input type="file" class="file-upload-input" id="previewFotoInput4" name="ktp_ortu">
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-outline-danger">Hapus</button>
                                 </div>
                                 <div class="col-md-3 col-lg-3">
                                     <h5>KTP Wali</h5>
                                     <div class="file-upload-container">
-                                        <img src="{{ asset($berkas->ktp_wali ? 'ktp_wali/'.$berkas->ktp_wali :'img/preview-image.png') }}" alt="Gambar" class="file-upload-image preview-foto" id="previewFoto5">
+                                        <img src="{{ asset($berkas->ktp_wali ? 'storage/'.$berkas->ktp_wali :'img/preview-image.png') }}" alt="Gambar" class="file-upload-image preview-foto" id="previewFoto5">
                                         <div class="file-upload-overlay">
                                             <i class="fas fa-camera"></i>
                                             <p>Pilih Gambar</p>
                                             <input type="file" class="file-upload-input" id="previewFotoInput5" name="ktp_wali">
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-outline-danger">Hapus</button>
                                 </div>
                             </div>
                             <hr>
@@ -158,24 +154,12 @@
             <div class="p">Progres Pendaftaran</div>
             <hr>
             <ul>
-                <li>
-                    <a class="pro" href="{{ route('dashba') }}">Dashboard</a>
-                </li>
-                <li>
-                    <a class="pro" href="{{ route('data-diri') }}">Data Diri</a>
-                </li>
-                <li>
-                    <a class="pro" href="{{ route('dataOrtu') }}">Data Orang Tua</a>
-                </li>
-                <li>
-                    <a class="pro" href="{{ route('asalSekolah') }}">Asal Sekolah</a>
-                </li>
-                <li>
-                    <a class="pro active" href="{{ route('data-diri') }}">Berkas Santri</a>
-                </li>
-                <li>
-                    <a class="pro" href="{{ route('data-diri') }}">Validasi</a>
-                </li>
+                <li><a class="pro" href="{{ route('dashba') }}">Dashboard</a></li>
+                <li><a class="pro" href="{{ route('data-diri') }}">Data Diri</a></li>
+                <li><a class="pro" href="{{ route('dataOrtu') }}">Data Orang Tua</a></li>
+                <li><a class="pro" href="{{ route('asalSekolah') }}">Asal Sekolah</a></li>
+                <li><a class="pro active" href="{{ route('data-diri') }}">Berkas Santri</a></li>
+                <li><a class="pro" href="{{ route('data-diri') }}">Validasi</a></li>
             </ul>
         </div>
     </div>
@@ -189,26 +173,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-            <ul>
-                <li>
-                    <a class="pro" href="{{ route('dashba') }}">Dashboard</a>
-                </li>
-                <li>
-                    <a class="pro" href="{{ route('data-diri') }}">Data Diri</a>
-                </li>
-                <li>
-                    <a class="pro" href="{{ route('dataOrtu') }}">Data Orang Tua</a>
-                </li>
-                <li>
-                    <a class="pro" href="{{ route('asalSekolah') }}">Asal Sekolah</a>
-                </li>
-                <li>
-                    <a class="pro active" href="{{ route('sabaBerkas') }}">Berkas Santri</a>
-                </li>
-                <li>
-                    <a class="pro" href="#">Validasi</a>
-                </li>
-            </ul>
+        <ul>
+            <li><a class="pro" href="{{ route('dashba') }}">Dashboard</a></li>
+            <li><a class="pro" href="{{ route('data-diri') }}">Data Diri</a></li>
+            <li><a class="pro" href="{{ route('dataOrtu') }}">Data Orang Tua</a></li>
+            <li><a class="pro" href="{{ route('asalSekolah') }}">Asal Sekolah</a></li>
+            <li><a class="pro active" href="{{ route('data-diri') }}">Berkas Santri</a></li>
+            <li><a class="pro" href="{{ route('data-diri') }}">Validasi</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -231,5 +203,6 @@
             }
         });
     });
+
 </script>
 @endsection

@@ -136,9 +136,9 @@ class SantriService extends ServiceProvider
                 'no_hp_wali' => $request->no_hp_wali,
             ]);
         }
-        $santri = [
-            'id' => 2,
-        ];
+        // $santri = [
+        //     'id' => '2',
+        // ];
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil Input Data',
@@ -158,6 +158,8 @@ class SantriService extends ServiceProvider
         ]);
 
         $data = Saba::where('id', $request->idSaba)->first(['nama_lengkap']);
+        $nama_lengkap = $data->nama_lengkap;
+        $replace_name = str_replace(' ','_', $nama_lengkap);
 
         $foto = null;
         $kk = null;
@@ -166,29 +168,29 @@ class SantriService extends ServiceProvider
 
         if ($request->hasFile('foto')) {
            $file = $request->file('foto');
-           $name = 'Foto'.'_'. $data->nama_lengkap .'.'. $file->getClientOriginalExtension();
-           $foto = $file->storeAs('fotos', $name, 'private');
+           $name = 'FOTO'.'_'. $replace_name .'.'. $file->getClientOriginalExtension();
+           $foto = $file->storeAs('fotos', $name, 'public');
         }else{
             $foto = $request->foto;
         }
         if ($request->hasFile('kk')) {
            $file = $request->file('kk');
-           $name = 'KK'.'_'. $data->nama_lengkap .'.'. $file->getClientOriginalExtension();
-           $kk = $file->storeAs('kks', $name, 'private');
+           $name = 'KK'.'_'. $replace_name .'.'. $file->getClientOriginalExtension();
+           $kk = $file->storeAs('kks', $name, 'public');
         }else{
             $kk = $request->kk;
         }
         if ($request->hasFile('ktp_ortu')) {
            $file = $request->file('ktp_ortu');
-           $name = 'KTP_ORTU'.'_'. $data->nama_lengkap .'.'. $file->getClientOriginalExtension();
-           $ktp_ortu = $file->storeAs('ktp_ortus', $name, 'private');
+           $name = 'KTP_ORTU'.'_'. $replace_name .'.'. $file->getClientOriginalExtension();
+           $ktp_ortu = $file->storeAs('ktp_ortus', $name, 'public');
         }else{
             $ktp_ortu = $request->ktp_ortu;
         }
         if ($request->hasFile('ktp_wali')) {
            $file = $request->file('ktp_wali');
-           $name = 'KTP_WALI'.'_'. $data->nama_lengkap .'.'. $file->getClientOriginalExtension();
-           $ktp_wali = $file->storeAs('ktp_walis', $name, 'private');
+           $name = 'KTP_WALI'.'_'. $replace_name .'.'. $file->getClientOriginalExtension();
+           $ktp_wali = $file->storeAs('ktp_walis', $name, 'public');
         }else{
             $ktp_wali = $request->ktp_wali;
         }

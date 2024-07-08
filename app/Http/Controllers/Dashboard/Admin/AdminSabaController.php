@@ -13,6 +13,7 @@ use App\Providers\Service\IndoRegionService;
 use App\Providers\Service\SantriService;
 use App\Providers\Service\UserService;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -55,7 +56,8 @@ class AdminSabaController extends Controller
     // cek saudara kandung
     public function cekSaudaraKandung($nokk){
         $data = Saba::where('nokk', $nokk)->get(['nokk','id']);
-        if ($data == null) {
+
+        if ($data->isEmpty()) {
             return response()->json(['status' => 404]);
         }else {
             return response()->json([

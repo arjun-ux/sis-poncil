@@ -22,7 +22,7 @@
                         @if ($berkasSaba === null)
                             <img class="img-thumbnail" src="{{ asset('img/pp.png') }}" alt="pp">
                         @else
-                            <img class="img-thumbnail" src="{{ asset('foto/' . $berkasSaba->foto) }}" alt="pp">
+                            <img class="img-thumbnail" src="{{ asset('storage/' . $berkasSaba->foto) }}" alt="pp">
                         @endif
                     </div>
                     <div class="col-md-8 col-xs-12 px-2">

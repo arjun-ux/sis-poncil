@@ -28,7 +28,7 @@
   <script>
     $(document).ready(function(){
         $('#tableSantri').DataTable({
-            "processing": true,
+            "processing": false,
             "serverSide": true,
             "ajax": {
                 "url": '/getAllSantri',
