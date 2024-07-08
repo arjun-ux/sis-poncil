@@ -2,6 +2,7 @@
 
 namespace App\Providers\Service;
 
+use App\Jobs\MailJobs;
 use App\Models\Berkas;
 use App\Models\OrangTua;
 use App\Models\Saba;
@@ -136,6 +137,8 @@ class SantriService extends ServiceProvider
                 'no_hp_wali' => $request->no_hp_wali,
             ]);
         }
+        // kirim email
+        MailJobs::dispatch($user, $santri);
         // $santri = [
         //     'id' => '2',
         // ];

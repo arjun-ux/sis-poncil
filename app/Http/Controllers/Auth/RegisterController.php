@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Mail\WelcomeMail;
+use App\Jobs\MailJobs;
 use App\Models\User;
 use App\Models\Saba;
 use Illuminate\Http\Request;
@@ -45,7 +45,7 @@ class RegisterController extends Controller
                 'nama_lengkap' => $request->nama_lengkap,
                 // 'status' => 'Register',
             ]);
-            Mail::to($request->email)->send(new WelcomeMail($sabaUser, $saba));
+            MailJobs::dispatch($sabaUser, $saba);
             return redirect()->route("login")->with('success','Registrasi Berhasil');
         }
         return back();
